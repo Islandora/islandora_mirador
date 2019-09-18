@@ -54,7 +54,6 @@ class MiradorBlock extends BlockBase {
     $token_service = \Drupal::token();
     $node = \Drupal::routeMatch()->getParameter('node');
     \Drupal::logger('mirador')->info($node->id());
-    // Replace the token for subject.
     $manifest_url = $token_service->replace($this->configuration['iiif_manifest_url'], ['node' => $node]);
     \Drupal::logger('mirador')->info($manifest_url);
     $build = [
@@ -63,13 +62,9 @@ class MiradorBlock extends BlockBase {
       "#theme" => "miradordiv",
       "#attached" => [
         'drupalSettings' => [
-          'manifestUrl' => $manifest_url,
           'iiif_manifest_url' => $manifest_url,
         ],
       ],
-      // 'miradordiv' => [
-        // "#iiif_manifest_url" => $manifest_url,
-      // ],
     ];
 
     return $build;

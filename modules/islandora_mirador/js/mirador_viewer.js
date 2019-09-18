@@ -15,11 +15,8 @@
     var initialized;
 
     function init(context,settings){
-        console.log(context)
-        console.log(settings)
         if (!initialized){
             initialized = true;
-            console.log(settings)
             var miradorInstance = Mirador.viewer({
                 "id": base,
                 "manifests": {
@@ -42,8 +39,6 @@
      */
     Drupal.behaviors.Mirador = {
         attach: function (context, settings) {
-            console.log(context)
-            console.log(settings)
             init(context,settings);
         },
         detach: function () {

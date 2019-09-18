@@ -6,8 +6,6 @@ function islandora_mirador_theme() {
   return [
     'miradordiv' => [
       'variables' => [
-        'manifestURL' => NULL,
-        'settings' => NULL,
         'iiif_manifest_url' => NULL,
       ],
       'template' => 'miradordiv',
