@@ -1,0 +1,9 @@
+name: 'Islandora Mirador'
+type: module
+description: 'Configuration for a Mirador Block'
+core: 8.x
+package: 'Islandora'
+dependencies:
+  - block
+  - islandora_defaults
+  - islandora_iiif

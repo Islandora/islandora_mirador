@@ -1,0 +1,15 @@
+mirador:
+  version: 1.x
+  js:
+    js/mirador.min.js: {minified}
+    header: true
+viewer:
+  version: 1.x
+  js:
+    js/mirador_viewer.js: {preprocess: false}
+  css:
+    theme:
+      css/mirador.css: {}
+  dependencies:
+    - core/drupalSettings
+    - islandora_mirador/mirador
