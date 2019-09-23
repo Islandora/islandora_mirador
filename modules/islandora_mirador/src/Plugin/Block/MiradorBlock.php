@@ -26,15 +26,24 @@ class MiradorBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
-    $form['iiif_manifest_url'] = [
-      '#type' => 'textfield',
+    $form['iiif_manifest_url_fieldset'] = [
+      '#type' => 'fieldset',
       '#title' => $this->t('IIIF Manifest URL'),
-      '#description' => $this->t('URL of the IIIF manifest to render.  You may use tokens to provide a pattern (e.g. "http://localhost:8000/node/[node:nid]/manifest"'),
+    ];
+    $form['iiif_manifest_url_fieldset']['iiif_manifest_url'] = [
+      '#type' => 'textfield',
+      '#description' => $this->t('Absolute URL of the IIIF manifest to render.  You may use tokens to provide a pattern (e.g. "http://localhost/node/[node:nid]/manifest")'),
       '#default_value' => $this->configuration['iiif_manifest_url'],
       '#maxlength' => 256,
       '#size' => 64,
-      '#weight' => '0',
       '#required' => TRUE,
+      '#element_validate' => ['token_element_validate'],
+      '#token_types' => ['node'],
+    ];
+    $form['iiif_manifest_url_fieldset']['token_help'] = [
+      '#theme' => 'token_tree_link',
+      '#global_types' => FALSE,
+      '#token_types' => ['node'],
     ];
 
     return $form;
@@ -44,7 +53,7 @@ class MiradorBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['iiif_manifest_url'] = $form_state->getValue('iiif_manifest_url');
+    $this->configuration['iiif_manifest_url'] = $form_state->getValue(['iiif_manifest_url_fieldset', 'iiif_manifest_url']);
   }
 
   /**
