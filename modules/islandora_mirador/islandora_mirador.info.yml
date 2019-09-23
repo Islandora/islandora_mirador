@@ -7,3 +7,4 @@ dependencies:
   - block
   - islandora_defaults
   - islandora_iiif
+  - token
