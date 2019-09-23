@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * @file
+ * Supports Islandora submodule islandora_mirador.
+ */
+
 /**
  * Implements hook_theme().
  */
