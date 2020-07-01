@@ -15,7 +15,7 @@ conditions:
     logic: and
     negate: 0
     uuid: d43d2644-848e-46e7-a3ff-2023277aacc3
-    uri: 'https://schema.org/Book,https://projectmirador.org/'
+    uri: 'https://schema.org/Book,https://projectmirador.org'
     context_mapping:
       node: '@node.node_route_context:node'
 reactions:
