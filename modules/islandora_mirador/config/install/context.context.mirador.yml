@@ -5,7 +5,7 @@ dependencies:
     - islandora
 name: mirador
 label: Mirador
-group: Islandora
+group: Display
 description: 'Context for enabling mirador viewer on select nodes'
 requireAllConditions: false
 disabled: false
@@ -13,26 +13,13 @@ conditions:
   node_has_term:
     id: node_has_term
     negate: 0
-    uri: 'https://schema.org/Book,https://projectmirador.org'
+    uri: 'https://projectmirador.org/'
     context_mapping:
       node: '@node.node_route_context:node'
+    logic: and
 reactions:
-  blocks:
-    blocks:
-      144175c5-eb4b-4dcf-a637-9ca442fc31c3:
-        id: mirador_block
-        label: 'Mirador block'
-        provider: islandora_mirador
-        label_display: visible
-        region: content
-        weight: '0'
-        iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/book-manifest'
-        context_mapping: {  }
-        theme: carapace
-        css_class: ''
-        unique: 0
-        context_id: mirador
-    id: blocks
+  view_mode_alter:
+    id: view_mode_alter
+    mode: node.mirador
     saved: false
-    include_default_blocks: 1
 weight: 0
