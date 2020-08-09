@@ -16,5 +16,11 @@ function islandora_mirador_theme() {
       ],
       'template' => 'miradordiv',
     ],
+    'mirador' => [
+      'variables' => [
+        'iiif_manifest_url' => NULL,
+      ],
+      'template' => 'mirador',
+    ],
   ];
 }
