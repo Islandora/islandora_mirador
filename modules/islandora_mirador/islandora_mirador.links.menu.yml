@@ -1,0 +1,5 @@
+islandora_mirador.miradorconfig:
+  title: "Mirador Settings"
+  description: "Configure the Mirador viewer settings."
+  parent: system.admin_config_media
+  route_name: islandora_mirador.miradorconfig

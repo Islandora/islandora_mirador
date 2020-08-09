@@ -1,0 +1,7 @@
+islandora_mirador.miradorconfig:
+  path: '/admin/config/media/mirador'
+  defaults:
+    _form: '\Drupal\islandora_mirador\Form\MiradorConfigForm'
+    _title: 'Mirador Settings'
+  requirements:
+    _permission: 'administer site configuration'

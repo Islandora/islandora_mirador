@@ -8,3 +8,4 @@ dependencies:
   - islandora_defaults
   - islandora_iiif
   - token
+configure: islandora_mirador.miradorconfig

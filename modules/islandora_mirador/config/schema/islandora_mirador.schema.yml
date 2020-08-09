@@ -1,0 +1,7 @@
+mirador.settings:
+  type: config_object
+  label: 'Mirador Settings'
+  mapping:
+    iiif_manifest_url:
+      type: string
+      label: 'URL pattern for IIIF manifest view'
