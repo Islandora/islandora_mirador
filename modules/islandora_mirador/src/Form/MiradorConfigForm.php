@@ -1,20 +1,24 @@
 <?php
+
 namespace Drupal\islandora_mirador\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Mirador Settings Form.
+ */
 class MiradorConfigForm extends ConfigFormBase {
 
   /**
-   * @inheritdoc
+   * {@inheritdoc}
    */
   public function getFormId() {
     return 'islandora_mirador.miradorconfig.form';
   }
 
   /**
-   * @inheritdoc
+   * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
@@ -44,14 +48,14 @@ class MiradorConfigForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
-  */
+   */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
   }
 
   /**
    * {@inheritdoc}
-  */
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('mirador.settings');
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
@@ -61,10 +65,11 @@ class MiradorConfigForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
-  */
+   */
   protected function getEditableConfigNames() {
     return [
       'mirador.settings',
     ];
   }
+  
 }
