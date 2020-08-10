@@ -71,5 +71,5 @@ class MiradorConfigForm extends ConfigFormBase {
       'mirador.settings',
     ];
   }
-  
+
 }
