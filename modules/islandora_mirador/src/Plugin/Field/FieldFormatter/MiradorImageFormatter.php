@@ -44,7 +44,7 @@ class MiradorImageFormatter extends ImageFormatterBase implements ContainerFacto
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $settings = $this->getSettings();
-    $config = \Drupal::config('mirador.settings');
+    $config = \Drupal::config('islandora_mirador.settings');
     $iiif_url = $config->get('iiif_manifest_url');
     $token_service = \Drupal::token();
     $node = \Drupal::routeMatch()->getParameter('node');

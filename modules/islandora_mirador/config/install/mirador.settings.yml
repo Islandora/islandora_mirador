@@ -1,3 +1,0 @@
-mirador:
-  iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/manifest'
-iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/manifest'

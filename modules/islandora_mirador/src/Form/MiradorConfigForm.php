@@ -22,7 +22,7 @@ class MiradorConfigForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
-    $config = $this->config('mirador.settings');
+    $config = $this->config('islandora_mirador.settings');
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('IIIF Manifest URL'),
@@ -57,7 +57,7 @@ class MiradorConfigForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $config = $this->config('mirador.settings');
+    $config = $this->config('islandora_mirador.settings');
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->save();
     return parent::submitForm($form, $form_state);
@@ -68,7 +68,7 @@ class MiradorConfigForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-      'mirador.settings',
+      'islandora_mirador.settings',
     ];
   }
 
