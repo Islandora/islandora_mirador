@@ -61,7 +61,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_classification:
-    weight: 29
+    weight: 27
     label: above
     settings:
       link_to_entity: false
@@ -69,14 +69,14 @@ content:
     type: string
     region: content
   field_coordinates:
-    weight: 23
+    weight: 21
     label: above
     settings: {  }
     third_party_settings: {  }
     type: geolocation_latlng
     region: content
   field_coordinates_text:
-    weight: 24
+    weight: 22
     label: above
     settings:
       link_to_entity: false
@@ -85,13 +85,13 @@ content:
     region: content
   field_description:
     type: basic_string
-    weight: 16
+    weight: 14
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dewey_classification:
-    weight: 27
+    weight: 25
     label: above
     settings:
       link_to_entity: false
@@ -99,7 +99,7 @@ content:
     type: string
     region: content
   field_edition:
-    weight: 11
+    weight: 9
     label: above
     settings:
       link_to_entity: false
@@ -107,17 +107,6 @@ content:
     type: string
     region: content
   field_edtf_date:
-    type: edtf_default
-    weight: 10
-    region: content
-    label: above
-    settings:
-      date_separator: dash
-      date_order: big_endian
-      month_format: mm
-      day_format: dd
-    third_party_settings: {  }
-  field_edtf_date_created:
     type: edtf_default
     weight: 8
     region: content
@@ -128,9 +117,20 @@ content:
       month_format: mm
       day_format: dd
     third_party_settings: {  }
+  field_edtf_date_created:
+    type: edtf_default
+    weight: 6
+    region: content
+    label: above
+    settings:
+      date_separator: dash
+      date_order: big_endian
+      month_format: mm
+      day_format: dd
+    third_party_settings: {  }
   field_edtf_date_issued:
     type: edtf_default
-    weight: 9
+    weight: 7
     region: content
     label: above
     settings:
@@ -141,27 +141,27 @@ content:
     third_party_settings: {  }
   field_extent:
     type: string
-    weight: 19
+    weight: 17
     region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_gemini_uri:
-    weight: 34
+    weight: 32
     region: content
     settings: {  }
     third_party_settings: {  }
   field_genre:
     type: entity_reference_label
-    weight: 15
+    weight: 13
     region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_geographic_subject:
-    weight: 22
+    weight: 20
     label: above
     settings:
       link: true
@@ -177,7 +177,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_isbn:
-    weight: 31
+    weight: 29
     label: above
     settings:
       link_to_entity: false
@@ -186,14 +186,14 @@ content:
     region: content
   field_language:
     type: entity_reference_label
-    weight: 13
+    weight: 11
     region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_lcc_classification:
-    weight: 28
+    weight: 26
     label: above
     settings:
       link_to_entity: false
@@ -201,7 +201,7 @@ content:
     type: string
     region: content
   field_linked_agent:
-    weight: 7
+    weight: 5
     label: above
     settings:
       link: true
@@ -209,7 +209,7 @@ content:
     type: typed_relation_default
     region: content
   field_local_identifier:
-    weight: 30
+    weight: 28
     label: above
     settings:
       link_to_entity: false
@@ -218,21 +218,21 @@ content:
     region: content
   field_member_of:
     type: entity_reference_label
-    weight: 6
+    weight: 4
     region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_note:
-    weight: 33
+    weight: 31
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_oclc_number:
-    weight: 32
+    weight: 30
     label: above
     settings:
       link_to_entity: false
@@ -241,14 +241,14 @@ content:
     region: content
   field_physical_form:
     type: entity_reference_label
-    weight: 18
+    weight: 16
     region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_place_published:
-    weight: 12
+    weight: 10
     label: above
     settings:
       link_to_entity: false
@@ -256,7 +256,7 @@ content:
     type: string
     region: content
   field_resource_type:
-    weight: 14
+    weight: 12
     label: above
     settings:
       link: true
@@ -265,14 +265,14 @@ content:
     region: content
   field_rights:
     type: string
-    weight: 20
+    weight: 18
     region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_subject:
-    weight: 21
+    weight: 19
     label: above
     settings:
       link: true
@@ -280,7 +280,7 @@ content:
     type: entity_reference_label
     region: content
   field_subjects_name:
-    weight: 26
+    weight: 24
     label: above
     settings:
       link: true
@@ -288,14 +288,14 @@ content:
     type: entity_reference_label
     region: content
   field_table_of_contents:
-    weight: 17
+    weight: 15
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_temporal_subject:
-    weight: 25
+    weight: 23
     label: above
     settings:
       link: true
@@ -303,7 +303,7 @@ content:
     type: entity_reference_label
     region: content
   islandora_fits_checksum:
-    weight: 35
+    weight: 33
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -312,7 +312,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  mirador_evas_entity_view_1:
+  mirador_evas_entity_view_2:
     weight: 3
     region: content
     settings: {  }
@@ -328,6 +328,8 @@ hidden:
   field_pid: true
   field_weight: true
   langcode: true
+  mirador_evas_entity_view_1: true
+  mirador_evas_entity_view_3: true
   openseadragon_media_evas_entity_view_1: true
   openseadragon_media_evas_entity_view_2: true
   openseadragon_media_evas_service_file: true
