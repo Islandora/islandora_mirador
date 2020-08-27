@@ -68,13 +68,6 @@ class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface 
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration() {
-    return [] + parent::defaultConfiguration();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function blockForm($form, FormStateInterface $form_state) {
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',

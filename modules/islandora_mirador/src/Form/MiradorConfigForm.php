@@ -49,18 +49,11 @@ class MiradorConfigForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('islandora_mirador.settings');
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->save();
-    return parent::submitForm($form, $form_state);
+    parent::submitForm($form, $form_state);
   }
 
   /**
