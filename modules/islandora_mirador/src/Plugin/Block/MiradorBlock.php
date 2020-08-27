@@ -4,6 +4,10 @@ namespace Drupal\islandora_mirador\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Utility\Token;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a mirador block from a IIIF Manifest.
@@ -13,7 +17,53 @@ use Drupal\Core\Form\FormStateInterface;
  *   admin_label = @Translation("Mirador block")
  * )
  */
-class MiradorBlock extends BlockBase {
+class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  /**
+   * The token service container.
+   *
+   * @var \Drupal\Core\Utility\Token
+   */
+  protected $token;
+
+  /**
+   * The route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $routeMatch;
+
+  /**
+   * Constructor for Mirador Block.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the formatter.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Utility\Token $token
+   *   The token service.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The route match.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Token $token, RouteMatchInterface $route_match) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->token = $token;
+    $this->routeMatch = $route_match;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('token'),
+      $container->get('current_route_match')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -60,14 +110,11 @@ class MiradorBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $token_service = \Drupal::token();
-    $node = \Drupal::routeMatch()->getParameter('node');
-    \Drupal::logger('mirador')->info($node->id());
-    $manifest_url = $token_service->replace($this->configuration['iiif_manifest_url'], ['node' => $node]);
-    \Drupal::logger('mirador')->info($manifest_url);
+    $node = $this->routeMatch->getParameter('node');
+    $manifest_url = $this->token->replace($this->configuration['iiif_manifest_url'], ['node' => $node]);
     $build = [
       "#title" => 'Mirador Viewer',
-      "#description" => "A div for mirador viewer",
+      "#description" => $this->t("A div for mirador viewer"),
       "#theme" => "miradordiv",
       "#attached" => [
         'drupalSettings' => [

@@ -1,11 +1,11 @@
 name: 'Islandora Mirador'
 type: module
 description: 'Configuration for a Mirador Block'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'Islandora'
 dependencies:
-  - block
-  - islandora_defaults
-  - islandora_iiif
-  - token
+  - drupal:block
+  - drupal:islandora_defaults
+  - drupal:islandora_iiif
+  - drupal:token
 configure: islandora_mirador.miradorconfig
