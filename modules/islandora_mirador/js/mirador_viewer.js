@@ -8,11 +8,15 @@
     'use strict';
 
     /**
-     * The DOM element that represents the Singleton Instance of this class.
+     * If initialized.
+     * @type {boolean}
+     */
+    var initialized;
+    /**
+     * Unique HTML id.
      * @type {string}
      */
-    var base = 'mirador';
-    var initialized;
+    var base;
 
     function init(context,settings){
         if (!initialized){
@@ -39,9 +43,11 @@
      */
     Drupal.behaviors.Mirador = {
         attach: function (context, settings) {
+            base = settings.mirador_view_id;
             init(context,settings);
         },
         detach: function () {
         }
     };
+
 })(jQuery, Drupal);
