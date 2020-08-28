@@ -7,7 +7,6 @@ mirador:
     gpl-compatible: true
   js:
     https://cdn.jsdelivr.net/npm/mirador@3.0.0-rc.5/dist/mirador.min.js: { type: external, minified: true}
-    header: true
 viewer:
   version: 1.x
   js:
