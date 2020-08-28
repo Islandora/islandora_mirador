@@ -106,12 +106,16 @@ class MiradorImageFormatter extends ImageFormatterBase implements ContainerFacto
     $iiif_url = $this->configFactory->get('islandora_mirador.settings')->get('iiif_manifest_url');
     $token_service = $this->token;
     $node = $this->routeMatch->getParameter('node');
+    $id = 'mirador_' . $node->id();
     $manifest_url = $token_service->replace($iiif_url, ['node' => $node]);
     $elements[] = [
       '#theme' => 'mirador',
+      '#mirador_view_id' => $id,
+      '#iiif_manifest_url' => $manifest_url,
       '#attached' => [
         'drupalSettings' => [
           'iiif_manifest_url' => $manifest_url,
+          'mirador_view_id' => $id,
         ],
       ],
       '#settings' => $settings,
