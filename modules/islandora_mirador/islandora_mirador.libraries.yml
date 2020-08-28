@@ -1,7 +1,12 @@
 mirador:
-  version: 1.x
+  version: 3.0.0-rc5
+  remote: https://projectmirador.org
+  license:
+    name: Apache license
+    url: https://github.com/ProjectMirador/mirador/blob/master/LICENSE
+    gpl-compatible: true
   js:
-    js/mirador.min.js: {minified}
+    https://cdn.jsdelivr.net/npm/mirador@3.0.0-rc.5/dist/mirador.min.js: { type: external, minified: true}
     header: true
 viewer:
   version: 1.x
