@@ -123,4 +123,31 @@ class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface 
     return $build;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return Cache::mergeContexts(parent::getCacheContexts(), ['route']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    $node = $this->routeMatch->getParameter('node');
+    if ($node) {
+      $cache_items = [
+        'node:' . $node->id(),
+        'media_list',
+      ];
+      // Note we could not specify individual media IDs here
+      // Since there would be no way to know that a node
+      // Got referenced by a new media to update the media ids.
+      return Cache::mergeTags(parent::getCacheTags(), $cache_items);
+    }
+    else {
+      return parent::getCacheTags();
+    }
+  }
+
 }
