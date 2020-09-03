@@ -2,6 +2,7 @@
 
 namespace Drupal\islandora_mirador\Plugin\Block;
 
+use Drupal\Cache\Cache;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
