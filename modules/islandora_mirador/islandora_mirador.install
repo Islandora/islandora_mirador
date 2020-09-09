@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install/update hook implementations.
+ */
+
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_install().
+ */
+function islandora_mirador_install() {
+  _get_or_create_tag();
+}
+
+/**
+ * Implements hook_update().
+ */
+function islandora_mirador_update_8001() {
+  _get_or_create_tag();
+}
+
+/**
+ * Looks up or creates Mirador term.
+ */
+function _get_or_create_tag() {
+  $term_name = 'Mirador';
+  $test_terms = taxonomy_term_load_multiple_by_name($term_name);
+  if (!$test_terms) {
+    $term = Term::create([
+      'parent' => [],
+      'name' => $term_name,
+      'vid' => 'islandora_display',
+      'description' => 'Display using the Mirador viewer',
+      'field_external_uri' => ['uri' => 'https://projectmirador.org'],
+    ])->save();
+  }
+}
