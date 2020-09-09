@@ -97,7 +97,9 @@ class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['iiif_manifest_url'] = $form_state->getValue(['iiif_manifest_url_fieldset', 'iiif_manifest_url']);
+    $this->configuration['iiif_manifest_url'] = $form_state->getValue(
+      ['iiif_manifest_url_fieldset', 'iiif_manifest_url']
+    );
   }
 
   /**
