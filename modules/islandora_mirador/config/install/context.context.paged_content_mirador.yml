@@ -30,7 +30,7 @@ reactions:
         weight: '0'
         iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/book-manifest'
         context_mapping: {  }
-        theme: carapace
+        theme: bartik
         css_class: ''
         unique: 0
         context_id: paged_content_mirador
