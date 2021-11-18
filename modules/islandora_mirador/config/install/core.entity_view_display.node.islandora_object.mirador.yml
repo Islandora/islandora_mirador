@@ -4,7 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.mirador
     - field.field.node.islandora_object.field_access_terms
-    - field.field.node.islandora_object.field_alternative_title
+    - field.field.node.islandora_object.field_alt_title
     - field.field.node.islandora_object.field_classification
     - field.field.node.islandora_object.field_coordinates
     - field.field.node.islandora_object.field_coordinates_text
@@ -52,7 +52,7 @@ targetEntityType: node
 bundle: islandora_object
 mode: mirador
 content:
-  field_alternative_title:
+  field_alt_title:
     type: string
     weight: 0
     region: content
