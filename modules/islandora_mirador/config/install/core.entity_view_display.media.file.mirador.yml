@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.mirador
-    - field.field.media.file.field_access_terms
     - field.field.media.file.field_file_size
     - field.field.media.file.field_media_file
     - field.field.media.file.field_media_of
@@ -27,7 +26,6 @@ content:
     region: content
 hidden:
   created: true
-  field_access_terms: true
   field_file_size: true
   field_gemini_uri: true
   field_media_of: true
