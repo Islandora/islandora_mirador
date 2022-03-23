@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.mirador
-    - field.field.node.islandora_object.field_access_terms
     - field.field.node.islandora_object.field_alt_title
     - field.field.node.islandora_object.field_classification
     - field.field.node.islandora_object.field_coordinates
@@ -322,7 +321,6 @@ hidden:
   display_media_entity_view_2: true
   display_media_service_file: true
   display_media_thumbnail: true
-  field_access_terms: true
   field_display_hints: true
   field_model: true
   field_pid: true
