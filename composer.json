@@ -1,0 +1,20 @@
+{
+  "name": "islandora/islandora_mirador",
+  "description": "Islandora support for Mirador viewer",
+  "type": "drupal-module",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "keywords": ["Drupal", "Islandora"],
+  "license": "GPL-2.0+",
+  "homepage": "https://github.com/Islandora/islandora_mirador",
+  "support": {
+    "issues": "https://github.com/Islandora/documentation/issues"
+  },
+  "require": {
+    "islandora/islandora": "^2"
+  },
+  "conflict": {
+    "drupal/core": "<=8",
+    "islandora/islandora_defaults": "<=2.1.1"
+  }
+}
