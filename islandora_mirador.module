@@ -29,3 +29,10 @@ function template_preprocess_mirador(&$variables) {
   $variables['mirador_view_id'] = Html::getUniqueId($variables['mirador_view_id']);
   $variables['#attached']['drupalSettings']['mirador_view_id'] = $variables['mirador_view_id'];
 }
+
+
+function islandora_mirador_library_info_alter(&$libraries, $extension) {
+  if ($extension == 'islandora_mirador') {
+    print('');
+  }
+}
