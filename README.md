@@ -8,12 +8,20 @@
 
 ## Introduction
 
+This module provides Drupal integration for the [Mirador](https://projectmirador.org) image viewer.
+
 ## Installation
 
 ```bash
 $ composer require islandora/islandora_mirador
 $ drush en islandora_mirador
 ```
+
+### Upgrading from Islandora Defaults
+
+This module was formerly distributed with Islandora Defaults. If you are upgrading 
+you may need to clear Drupal's cache and re-start your web server to resolve
+a Plugin Not Found error.
 
 ## Usage
 
