@@ -23,6 +23,17 @@ class MiradorConfigForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
     $config = $this->config('islandora_mirador.settings');
+    $form['mirador_library_fieldset'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Mirador library location'),
+    ];
+    $form['mirador_library_use_remote'] = [
+      '#type' => 'checkboxes',
+      '#options' => [
+        'local'=> $this->t('Local library'),
+        'remote' => $this->t('Remote (e.g. on a CDN)'),
+      ],
+    ];
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('IIIF Manifest URL'),
