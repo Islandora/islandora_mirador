@@ -28,11 +28,17 @@ class MiradorConfigForm extends ConfigFormBase {
       '#title' => $this->t('Mirador library location'),
     ];
     $form['mirador_library_use_remote'] = [
-      '#type' => 'checkboxes',
+      '#type' => 'radios',
       '#options' => [
-        'local'=> $this->t('Local library'),
+        'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
         'remote' => $this->t('Remote (e.g. on a CDN)'),
       ],
+      '#default_value' => $config-> ? $config->get('mirador_library_use_remote') : 'remote',
+    ];
+    $form['mirador_library_location'] = [
+      '#type' => 'text',
+      '#description' => $this->t('Remote URL of compiled Mirador library'),
+      '#default_value' => $config->get('mirador_library_location'),
     ];
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
