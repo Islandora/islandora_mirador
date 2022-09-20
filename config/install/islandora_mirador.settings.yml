@@ -1,1 +1,3 @@
+mirador_library_use_remote: 'remote'
+mirador_library_location: 'https://cdn.jsdelivr.net/npm/mirador@3.3.0/dist/mirador.min.js'
 iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/manifest'
