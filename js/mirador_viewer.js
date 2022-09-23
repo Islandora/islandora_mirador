@@ -21,20 +21,27 @@
     function init(context,settings){
         if (!initialized){
             initialized = true;
-            var miradorInstance = Mirador.viewer({
-                "id": base,
-                "manifests": {
-                    [settings.iiif_manifest_url]: {provider: "Islandora"}
-                },
-                "windows": [
+          var miradorInstance = Mirador.viewer({
+            "id": base,
+            "manifests": {
+              [settings.iiif_manifest_url]: {provider: "Islandora"}
+            },
+            "window": {
+              "textOverlay": {
+                "enabled": true,
+                "selectable": true,
+                "visible": true,
+              },
+            },
+            "windows": [
                     {
                         "manifestId": settings.iiif_manifest_url,
                         "thumbnailNavigationPosition": 'far-bottom'
                     }
                 ]
             },  [
-        ...textOverlayPlugin,
-        ]);
+              ...textOverlayPlugin,
+            ]);
 
         }
     }

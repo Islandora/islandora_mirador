@@ -1,14 +1,15 @@
 mirador:
-  version: 3.0.0-rc5
+  version: 3.3.0
   js:
-    js/dist/main.js: { minified: true }
+    js/dist/main.js: { }
+    js/dist/0.main.js: {  }
     js/dist/1.main.js: {  }
     js/dist/2.main.js: {  }
     js/dist/3.main.js: {  }
     js/dist/4.main.js: {  }
     js/dist/5.main.js: {  }
     js/dist/6.main.js: {  }
-    js/dist/7.main.js: {  }
+    #    js/dist/7.main.js: {  }
 viewer:
   version: 1.x
   js:
