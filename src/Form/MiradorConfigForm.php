@@ -34,12 +34,23 @@ class MiradorConfigForm extends ConfigFormBase {
         'remote' => $this->t('Remote (e.g. on a CDN)'),
       ],
       '#default_value' => $config->get('mirador_library_use_remote'),
+      '#attributes' => [
+        'name' => 'field_mirador_library_use_remote',
+      ],
     ];
     $form['mirador_library_fieldset']['mirador_library_location'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Remote Mirador library location'),
       '#description' => $this->t('Remote URL of compiled Mirador library. It must be minified and be a single file.'),
       '#default_value' => $config->get('mirador_library_location'),
+      '#states' => [
+        // Show this field only if the 'remote' option is selected above.
+        'visible' => [
+          ':input[name="field_mirador_library_use_remote"]' => [
+            'value' => 'remote',
+          ],
+        ],
+      ],
     ];
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
