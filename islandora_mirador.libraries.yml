@@ -1,7 +1,7 @@
 mirador:
   version: 3.3.0
   js:
-    js/dist/main.js: { minified: true }
+    /libraries/mirador/dist/main.js: { minified: true }
 viewer:
   version: 1.x
   js:
