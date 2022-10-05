@@ -40,7 +40,7 @@
                     }
                 ]
             },  [
-              ...textOverlayPlugin,
+//              ...textOverlayPlugin,
             ]);
 
         }

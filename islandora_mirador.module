@@ -32,6 +32,18 @@ function template_preprocess_mirador(&$variables) {
 
 function islandora_mirador_library_info_alter(&$libraries, $extension) {
   if ($extension == 'islandora_mirador') {
-    print_r($extension);
+
+    $config = \Drupal::service('config.factory')->get('islandora_mirador.settings');
+    if ($config->get('mirador_library_use_remote') =='remote') {
+      $libraries['mirador']['js'][$config->get('mirador_library_location')] = [
+        'type' => 'external',
+        'minified' => TRUE,
+      ];
+    }
+    else {
+      unset($libraries['mirador']['remote']);
+      unset($libraries['mirador']['license']);
+      $libraries['mirador'] = '/libraries/mirador/dist';
+    }
   }
 }
