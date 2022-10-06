@@ -7,7 +7,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 
 /**
- * IslandoraMirador plugin manager.
+ * IslandoraMiradorPlugin plugin manager.
  */
 class IslandoraMiradorPluginManager extends DefaultPluginManager {
 
@@ -24,11 +24,11 @@ class IslandoraMiradorPluginManager extends DefaultPluginManager {
    */
   public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler) {
     parent::__construct(
-      'Plugin/IslandoraMirador',
+      'Plugin/IslandoraMiradorPlugin',
       $namespaces,
       $module_handler,
-      'Drupal\islandora_mirador\IslandoraMiradorInterface',
-      'Drupal\islandora_mirador\Annotation\IslandoraMirador'
+      'Drupal\islandora_mirador\IslandoraMiradorPluginInterface',
+      'Drupal\islandora_mirador\Annotation\IslandoraMiradorPlugin'
     );
     $this->alterInfo('islandora_mirador_info');
     $this->setCacheBackend($cache_backend, 'islandora_mirador_plugins');

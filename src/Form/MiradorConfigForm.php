@@ -4,11 +4,17 @@ namespace Drupal\islandora_mirador\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\islandora_mirador\Annotation\IslandoraMiradorPlugin;
+use Drupal\islandora_mirador\IslandoraMiradorPluginManager;
 /**
  * Mirador Settings Form.
  */
 class MiradorConfigForm extends ConfigFormBase {
+  /**
+   * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
+   */
+  protected $miradorPluginManager;
 
   /**
    * {@inheritdoc}
@@ -92,6 +98,29 @@ class MiradorConfigForm extends ConfigFormBase {
     return [
       'islandora_mirador.settings',
     ];
+  }
+
+
+  /**
+   * Constructs the Mirador config form.
+   *
+   * @param ConfigFactoryInterface $config_factory
+   * The configuration factory.
+   * @param IslandoraMiradorPluginManager $mirador_plugin_manager
+   * The Mirador Plugin Manager interface.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, IslandoraMiradorPluginManager $mirador_plugin_manager) {
+    parent::__construct($config_factory);
+    $this->miradorPluginManager = $mirador_plugin_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory')
+    );
   }
 
 }
