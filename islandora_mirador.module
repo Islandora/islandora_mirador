@@ -43,7 +43,7 @@ function islandora_mirador_library_info_alter(&$libraries, $extension) {
     else {
       unset($libraries['mirador']['remote']);
       unset($libraries['mirador']['license']);
-      $libraries['mirador']['js']['/libraries/mirador/dist'] = [];
+      $libraries['mirador']['js']['/libraries/mirador/dist/main.js'] = [];
     }
   }
 }

@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\islandora_mirador\Annotation\IslandoraMiradorPlugin;
 use Drupal\islandora_mirador\IslandoraMiradorPluginManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Mirador Settings Form.
  */
@@ -40,9 +41,9 @@ class MiradorConfigForm extends ConfigFormBase {
         'remote' => $this->t('Remote (e.g. on a CDN)'),
       ],
       '#default_value' => $config->get('mirador_library_use_remote'),
-      '#attributes' => [
-        'name' => 'field_mirador_library_use_remote',
-      ],
+//      '#attributes' => [
+//        'name' => 'field_mirador_library_use_remote',
+//      ],
     ];
     $form['mirador_library_fieldset']['mirador_library_location'] = [
       '#type' => 'textfield',
@@ -51,8 +52,8 @@ class MiradorConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('mirador_library_location'),
       '#states' => [
         // Show this field only if the 'remote' option is selected above.
-        'visible' => [
-          ':input[name="field_mirador_library_use_remote"]' => [
+        'enabled' => [
+          ':input[name="mirador_library_use_remote"]' => [
             'value' => 'remote',
           ],
         ],
@@ -86,6 +87,8 @@ class MiradorConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('islandora_mirador.settings');
+    $config->set('mirador_library_use_remote', $form_state->getValue('mirador_library_use_remote'));
+    $config->set('mirador_library_location', $form_state->getValue('mirador_library_location'));
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->save();
     parent::submitForm($form, $form_state);
@@ -119,7 +122,8 @@ class MiradorConfigForm extends ConfigFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('plugin.manager.islandora_mirador')
     );
   }
 
