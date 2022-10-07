@@ -41,9 +41,6 @@ class MiradorConfigForm extends ConfigFormBase {
         'remote' => $this->t('Remote (e.g. on a CDN)'),
       ],
       '#default_value' => $config->get('mirador_library_use_remote'),
-//      '#attributes' => [
-//        'name' => 'field_mirador_library_use_remote',
-//      ],
     ];
     $form['mirador_library_fieldset']['mirador_library_location'] = [
       '#type' => 'textfield',
@@ -58,6 +55,13 @@ class MiradorConfigForm extends ConfigFormBase {
           ],
         ],
       ],
+    ];
+    $plugins = $this->miradorPluginManager->getDefinitions();
+    $form['mirador_library_fieldset']['mirador_enabled_plugins'] = [
+      '#title' => $this->t('Enabled Plugins'),
+      '#description' => $this->t('Which plugins to enable. The plugins must be compiled in to the application. See the documentation for instructions.'),
+      '#type' => 'checkboxes',
+      '#options' => $plugins,
     ];
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
