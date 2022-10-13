@@ -56,7 +56,10 @@ class MiradorConfigForm extends ConfigFormBase {
         ],
       ],
     ];
-    $plugins = $this->miradorPluginManager->getDefinitions();
+    $plugins = [];
+    foreach ($this->miradorPluginManager->getDefinitions() as $plugin_key => $plugin_definition) {
+      $plugins[$plugin_key] = $plugin_definition['label'];
+    }
     $form['mirador_library_fieldset']['mirador_enabled_plugins'] = [
       '#title' => $this->t('Enabled Plugins'),
       '#description' => $this->t('Which plugins to enable. The plugins must be compiled in to the application. See the documentation for instructions.'),

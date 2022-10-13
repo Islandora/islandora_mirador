@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\islandora_mirador\Plugin\IslandoraMirador;
+namespace Drupal\islandora_mirador\Plugin\IslandoraMiradorPlugin;
 
 use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
 

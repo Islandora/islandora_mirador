@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\islandora_mirador\Plugin\IslandoraMirador;
+namespace Drupal\islandora_mirador\Plugin\IslandoraMiradorPlugin;
 
 use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -9,18 +9,17 @@ use Drupal\Core\Form\FormStateInterface;
  * Plugin implementation of the islandora_mirador.
  *
  * @IslandoraMiradorPlugin(
- *   id = "text_overlay",
+ *   id = "textOverlayPlugin",
  *   label = @Translation("Text Overlay"),
  *   description = @Translation("Mirador text overlay plugin for text selection and accessibility.")
  * )
  */
 class TextOverlay extends IslandoraMiradorPluginPluginBase {
 
-  public function configForm(array $form, FormStateInterface $form_state) {
-    return [];
-  }
-
-  public function alterConfig(array $config) {
+  /**
+   * {@InheritDoc}
+   */
+public function alterWindowConfig(array &$windowConfig) {
 
   }
 }
