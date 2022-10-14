@@ -19,7 +19,12 @@ class TextOverlay extends IslandoraMiradorPluginPluginBase {
   /**
    * {@InheritDoc}
    */
-public function alterWindowConfig(array &$windowConfig) {
-
+  public function windowConfigAlter(array &$windowConfig) {
+    $windowConfig['textOverlay'] = [
+      "enabled" => true,
+      "selectable" => true,
+      "visible" => true,
+    ];
   }
+
 }

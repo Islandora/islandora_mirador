@@ -22,6 +22,6 @@ interface IslandoraMiradorPluginInterface {
    * @param array $windowConfig
    * @return void
    */
-  public function alterWindowConfig(array &$windowConfig);
+  public function windowConfigAlter(array &$windowConfig);
 
 }

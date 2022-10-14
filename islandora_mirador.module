@@ -7,6 +7,7 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
+use Drupal\islandora_mirador\IslandoraMiradorPluginInterface;
 
 /**
  * Implements hook_theme().
@@ -38,6 +39,12 @@ function template_preprocess_mirador(&$variables) {
   $window_config = [];
   foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
     $plugin_instance = $mirador_plugin_manager->createInstance($plugin_id);
+    /**
+     * @var Drupal\islandora_mirador\IslandoraMiradorPluginInterface
+     */
+    $plugin_instance->windowConfigAlter($window_config);
+
+    $config_factory = \Drupal::service('config.factory');
 
   }
 }
