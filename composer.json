@@ -15,6 +15,6 @@
   },
   "conflict": {
     "drupal/core": "<=8",
-    "islandora/islandora_defaults": "<=3"
+    "islandora/islandora_defaults": "<3"
   }
 }
