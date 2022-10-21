@@ -44,18 +44,20 @@ function template_preprocess_mirador(&$variables) {
   $config = Drupal::service('config.factory')->get('islandora_mirador.settings');
 
   $mirador_plugins = $mirador_plugin_manager->getDefinitions();
+  $enabled_plugins = $config->get('mirador_enabled_plugins');
+  $variables['#attached']['drupalSettings']['mirador_enabled_plugins'] = array_filter(array_values($enabled_plugins));
 
   $window_config = [];
   foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
-    $plugin_instance = $mirador_plugin_manager->createInstance($plugin_id);
-    /**
-     * @var Drupal\islandora_mirador\IslandoraMiradorPluginInterface
-     */
-    $plugin_instance->windowConfigAlter($window_config);
-
-    $config_factory = \Drupal::service('config.factory');
-
+    if ($enabled_plugins[$plugin_id]) {
+      $plugin_instance = $mirador_plugin_manager->createInstance($plugin_id);
+      /**
+       * @var Drupal\islandora_mirador\IslandoraMiradorPluginInterface
+       */
+      $plugin_instance->windowConfigAlter($window_config);
+    }
   }
+  $variables['#attached']['drupalSettings']['mirador_window_settings'] = $window_config;
 }
 
 function islandora_mirador_library_info_alter(&$libraries, $extension) {
