@@ -65,6 +65,7 @@ class MiradorConfigForm extends ConfigFormBase {
       '#description' => $this->t('Which plugins to enable. The plugins must be compiled in to the application. See the documentation for instructions.'),
       '#type' => 'checkboxes',
       '#options' => $plugins,
+      '#default_value' =>  $config->get('mirador_enabled_plugins'),
     ];
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
@@ -96,6 +97,7 @@ class MiradorConfigForm extends ConfigFormBase {
     $config = $this->config('islandora_mirador.settings');
     $config->set('mirador_library_use_remote', $form_state->getValue('mirador_library_use_remote'));
     $config->set('mirador_library_location', $form_state->getValue('mirador_library_location'));
+    $config->set('mirador_enabled_plugins', $form_state->getValue('mirador_enabled_plugins'));
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->save();
     parent::submitForm($form, $form_state);

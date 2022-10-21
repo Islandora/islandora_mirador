@@ -8,6 +8,12 @@ islandora_mirador.settings:
     mirador_library_location:
       type: string
       label: 'Mirador library remote location'
+    mirador_enabled_plugins:
+      type: sequence
+      label: 'Enabled Plugins'
+      sequence:
+        type: string
+        label: 'Plugin'
     iiif_manifest_url:
       type: string
       label: 'URL pattern for IIIF manifest view'
