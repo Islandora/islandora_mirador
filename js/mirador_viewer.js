@@ -21,18 +21,14 @@
     function init(context,settings){
         if (!initialized){
             initialized = true;
+            var plugins = [];
+            settings.mirador_enabled_plugins.forEach(plugin => plugins.push(window[plugin]));
           var miradorInstance = Mirador.viewer({
             "id": base,
             "manifests": {
               [settings.iiif_manifest_url]: {provider: "Islandora"}
             },
-            "window": {
-              "textOverlay": {
-                "enabled": true,
-                "selectable": true,
-                "visible": true,
-              },
-            },
+            "window": settings.mirador_window_settings,
             "windows": [
                     {
                         "manifestId": settings.iiif_manifest_url,
@@ -40,7 +36,7 @@
                     }
                 ]
             },  [
-              ...textOverlayPlugin,
+              ...plugins,
             ]);
 
         }
