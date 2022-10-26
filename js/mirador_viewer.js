@@ -22,7 +22,7 @@
         if (!initialized){
             initialized = true;
             var plugins = [];
-            settings.mirador_enabled_plugins.forEach(plugin => plugins.push(window[plugin]));
+            settings.mirador_enabled_plugins.forEach(plugin => plugins.push(...window[plugin]));
           var miradorInstance = Mirador.viewer({
             "id": base,
             "manifests": {
