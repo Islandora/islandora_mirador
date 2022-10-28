@@ -10,7 +10,10 @@
 
 ## Introduction
 
-This module provides Drupal integration for the [Mirador](https://projectmirador.org) image viewer.
+This is a Drupal module that wraps around the Mirador image viewer.
+It does not strictly require Islandora, however it depends on an [IIIF Manifest](https://iiif.io/api/presentation/2.0/),
+Islandora generates these manifests but they can also come from
+third-party sources.
 
 ## Installation
 
@@ -21,9 +24,15 @@ $ drush en islandora_mirador
 
 ### Upgrading from Islandora Defaults
 
-This module was formerly distributed with Islandora Defaults. If you are upgrading 
+This module was formerly distributed with Islandora Defaults. If you are upgrading
 you may need to clear Drupal's cache and re-start your web server to resolve
 a Plugin Not Found error.
+
+### Local library
+
+The module can use either an instance of Mirador Integration hosted
+on the web or deployed locally. If you have a local build, put it in
+your webroot at libraries/mirador/dist/main.js.
 
 ## Usage
 
@@ -37,6 +46,12 @@ This module also provides a Block that can be included in custom displays.
 
 The configuration page is located at /admin/config/media/mirador.
 
+YOu can select if the library is deployed locally or set the remote
+library's location.
+
+You can also enable particular plugins. You need to know if the
+plugins are included in the particular build of Mirador Integration.
+
 You can set the URL pattern to retrieve the IIIF manifest for a piece of content.
 
 ## Documentation
@@ -49,10 +64,10 @@ Having problems? Solved a problem? Join the Islandora [communication channels](h
 
 * [Islandora Mailing List (Google Group)](https://groups.google.com/g/islandora)
 
+
 * If you would like to contribute or have questions, please get involved by attending our weekly [Tech Call](https://github.com/Islandora/islandora-community/wiki/Weekly-Open-Tech-Call), held virtually via Zoom **every Wednesday** at [**1:00pm Eastern Time US**](https://dateful.com/convert/est-edt-eastern-time?t=13). Anyone is welcome to join and ask questions! The Zoom link can be found in the meeting minutes [here](https://github.com/Islandora/islandora-community/wiki/Weekly-Open-Tech-Call).
 
 If you would like to contribute code to the project, you need to be covered by an Islandora Foundation [Contributor License Agreement](https://github.com/Islandora/islandora-community/wiki/Onboarding-Checklist#contributor-license-agreements) or [Corporate Contributor License Agreement](https://github.com/Islandora/islandora-community/wiki/Onboarding-Checklist#contributor-license-agreements). Please see the [Contributor License Agreements](https://github.com/Islandora/islandora-community/wiki/Contributor-License-Agreements) page on the islandora-community wiki for more information.
 ## License
 
 [GPLv2](http://www.gnu.org/licenses/gpl-2.0.txt)
-

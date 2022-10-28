@@ -20,9 +20,11 @@
 
     function init(context,settings){
         if (!initialized){
-            initialized = true;
-            var plugins = [];
-            settings.mirador_enabled_plugins.forEach(plugin => plugins.push(...window[plugin]));
+          initialized = true;
+
+          /*
+           Mirador
+           */
           var miradorInstance = Mirador.viewer({
             "id": base,
             "manifests": {
@@ -35,10 +37,7 @@
                         "thumbnailNavigationPosition": 'far-bottom'
                     }
                 ]
-            },  [
-              ...plugins,
-            ]);
-
+            }, window.miradorPlugins);
         }
     }
     Drupal.Mirador = Drupal.Mirador || {};
