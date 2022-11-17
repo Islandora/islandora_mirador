@@ -42,6 +42,7 @@ class MiradorConfigForm extends ConfigFormBase {
       ],
       '#default_value' => $config->get('mirador_library_use_remote'),
     ];
+
     $form['mirador_library_fieldset']['mirador_library_location'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Remote Mirador library location'),
