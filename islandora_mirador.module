@@ -65,6 +65,7 @@ function islandora_mirador_library_info_alter(&$libraries, $extension) {
 
     $config = \Drupal::service('config.factory')->get('islandora_mirador.settings');
     if ($config->get('mirador_library_use_remote') =='remote') {
+      $libraries['mirador']['js'] = [];
       $libraries['mirador']['js'][$config->get('mirador_library_location')] = [
         'type' => 'external',
         'minified' => TRUE,
