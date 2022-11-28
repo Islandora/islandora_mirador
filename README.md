@@ -54,6 +54,27 @@ plugins are included in the particular build of Mirador Integration.
 
 You can set the URL pattern to retrieve the IIIF manifest for a piece of content.
 
+## Plugin Model
+
+YOu can add support for other Mirador plugins by implementing the plugin type
+defined in this module. Just declare a subclass of Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase
+and add the following annotation:
+
+```php
+/**
+ * @IslandoraMiradorPlugin(
+ *   id = "machineName",
+ *   label = @Translation("Plugin label"),
+ *   description = @Translation("Description of the plugin .")
+ * )
+ */
+
+```
+
+The only function so far is windowConfigAlter. You can use it to supply
+any configuration the plugin requires. Modifying the configuration
+in the UI is not implemented yet.
+
 ## Documentation
 
 Further documentation for IIIF (International Image Interoperability Framework) is available on the [Islandora 8 documentation site](https://islandora.github.io/documentation/user-documentation/iiif/).
