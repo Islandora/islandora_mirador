@@ -54,9 +54,28 @@ plugins are included in the particular build of Mirador Integration.
 
 You can set the URL pattern to retrieve the IIIF manifest for a piece of content.
 
-## Plugin Model
+## Plugins
 
-YOu can add support for other Mirador plugins by implementing the plugin type
+### Default Plugins
+
+As of version >= 2.3 the default Mirador application that this module
+loads is built with these Mirador 3 plugins:
+
+- [Image Tools](https://github.com/ProjectMirador/mirador-image-tools)
+
+    Toolbar providing extra image manipulation features like invert colors.
+
+- [Text Overlay](https://github.com/dbmdz/mirador-textoverlay)
+
+    Overlays embedded text such as hOCR on to the UI for text selection and screen reader support.
+
+### Developing Custom Plugins
+
+In Mirador 3 plugins must be built in to the application. See the documentation page [Creating Mirador 3 Plugins](https://github.com/ProjectMirador/mirador/wiki/M3---Creating-a-Mirador-plugin) for more information.
+
+Follow the instructions for deploying your custom-built Mirador app above to make it available to your Islandora site.
+
+You can add support for other Mirador plugins in Islandora itself by implementing the plugin type
 defined in this module. Just declare a subclass of Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase
 and add the following annotation:
 
