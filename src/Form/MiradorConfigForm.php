@@ -44,18 +44,11 @@ class MiradorConfigForm extends ConfigFormBase {
     ];
 
     $form['mirador_library_fieldset']['mirador_library_location'] = [
-      '#type' => 'textfield',
+      '#type' => 'markeup',
       '#title' => $this->t('Remote Mirador library location'),
-      '#description' => $this->t('Remote URL of compiled Mirador library. It must be minified and be a single file.'),
-      '#default_value' => $config->get('mirador_library_location'),
-      '#states' => [
-        // Show this field only if the 'remote' option is selected above.
-        'enabled' => [
-          ':input[name="mirador_library_use_remote"]' => [
-            'value' => 'remote',
-          ],
-        ],
-      ],
+      '#markup' => "<p>" . $this->t('Remote URL of compiled Mirador library. Default value is:')
+      . $config->get('mirador_library_location') . '</p><p>' . $this->t("This can be overridden via the config key <code>@key</code>"
+        . 'It must be minified and be a single file.</p>', ['@key' => "\$conf['islandora_mirador.settings']['mirador_library_location']"]),
     ];
     $plugins = [];
     foreach ($this->miradorPluginManager->getDefinitions() as $plugin_key => $plugin_definition) {
@@ -97,7 +90,6 @@ class MiradorConfigForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('islandora_mirador.settings');
     $config->set('mirador_library_use_remote', $form_state->getValue('mirador_library_use_remote'));
-    $config->set('mirador_library_location', $form_state->getValue('mirador_library_location'));
     $config->set('mirador_enabled_plugins', $form_state->getValue('mirador_enabled_plugins'));
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->save();
