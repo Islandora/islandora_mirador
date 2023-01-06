@@ -126,7 +126,7 @@ To display a text overlay, Mirador must be provided with hOCR text data - which 
 Follow these steps to confirm that hOCR is working.
 1. Add a new Repository Item with type **Paged Content**
 2. Add a child object of type **Page**
-3. On that child object, add a Media of type **File** and populate it with a TIFF file that has text on it (at this time, only TIFF files can be used for hOCR).
+3. On that child object, add a Media of type **File** and populate it with a TIFF file that has text on it (at this time, only TIFF files can be used for hOCR in the [ISLE-DC](https://github.com/Islandora-Devops/ISLE-DC) environment, see this issue on GitHub for details: [Tesseract in Hypercube does not support JP2](https://github.com/Islandora-Devops/isle-dc/issues/298))
     - Check **Original File** under "**Media Use**" (do NOT check any other media usages)
     - Do not add anything to the hOCR Extracted Text field you created. This will be populated when OCR is run on this file.
 4. Save the media.
