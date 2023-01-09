@@ -22,13 +22,13 @@ function islandora_mirador_update_8001() {
 }
 
 /**
- * Set a default config value for mirador_library_use_remote
+ * Set a default config value for mirador_library_installation_type
  * @return void
  */
 function islandora_mirador_update_20001() {
-  $config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
+$config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
 
-  $config->set('mirador_library_use_remote', 'remote');
+  $config->set('mirador_library_installation_type', 'remote');
   $config->set('mirador_library_location', 'https://roblib.github.io/mirador-integration-islandora/islandora-mirador-0.1.0.js');
 
     $config->save();

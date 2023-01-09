@@ -34,22 +34,15 @@ class MiradorConfigForm extends ConfigFormBase {
       '#type' => 'fieldset',
       '#title' => $this->t('Mirador library location'),
     ];
-    $form['mirador_library_fieldset']['mirador_library_use_remote'] = [
+    $form['mirador_library_fieldset']['mirador_library_installation_type'] = [
       '#type' => 'radios',
       '#options' => [
         'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
-        'remote' => $this->t('Remote (e.g. on a CDN)'),
+        'remote' => $this->t('Remote.'),
       ],
-      '#default_value' => $config->get('mirador_library_use_remote'),
+      '#default_value' => $config->get('mirador_library_installation_type'),
     ];
 
-    $form['mirador_library_fieldset']['mirador_library_location'] = [
-      '#type' => 'markeup',
-      '#title' => $this->t('Remote Mirador library location'),
-      '#markup' => "<p>" . $this->t('Remote URL of compiled Mirador library. Default value is:')
-      . $config->get('mirador_library_location') . '</p><p>' . $this->t("This can be overridden via the config key <code>@key</code>"
-        . 'It must be minified and be a single file.</p>', ['@key' => "\$conf['islandora_mirador.settings']['mirador_library_location']"]),
-    ];
     $plugins = [];
     foreach ($this->miradorPluginManager->getDefinitions() as $plugin_key => $plugin_definition) {
       $plugins[$plugin_key] = $plugin_definition['label'];
@@ -89,7 +82,7 @@ class MiradorConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('islandora_mirador.settings');
-    $config->set('mirador_library_use_remote', $form_state->getValue('mirador_library_use_remote'));
+    $config->set('mirador_library_installation_type', $form_state->getValue('mirador_library_installation_type'));
     $config->set('mirador_enabled_plugins', $form_state->getValue('mirador_enabled_plugins'));
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->save();
