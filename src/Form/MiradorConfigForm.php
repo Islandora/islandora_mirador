@@ -38,7 +38,7 @@ class MiradorConfigForm extends ConfigFormBase {
       '#type' => 'radios',
       '#options' => [
         'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
-        'remote' => $this->t('Default remote location ='),
+        'remote' => $this->t('Default remote location'),
       ],
       '#default_value' => $config->get('mirador_library_installation_type'),
     ];
