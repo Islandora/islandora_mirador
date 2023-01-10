@@ -60,6 +60,9 @@ function template_preprocess_mirador(&$variables) {
   $variables['#attached']['drupalSettings']['mirador_window_settings'] = $window_config;
 }
 
+/**
+ * Implements hook_library_info_alter().
+ */
 function islandora_mirador_library_info_alter(&$libraries, $extension) {
   if ($extension == 'islandora_mirador') {
 
