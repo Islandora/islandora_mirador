@@ -5,7 +5,8 @@ mirador:
     name: Apache license
     url: https://github.com/ProjectMirador/mirador/blob/master/LICENSE
     gpl-compatible: true
-  js: {  } # Set by hook_libraries_info)alter in islandora_mirador.module
+  js:
+    https://roblib.github.io/mirador-integration-islandora/islandora-mirador-0.1.0.js: { type: external, minified: true}
 viewer:
   version: 1.x
   js:
