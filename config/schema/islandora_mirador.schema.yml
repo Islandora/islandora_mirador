@@ -5,9 +5,6 @@ islandora_mirador.settings:
     mirador_library_installation_type:
       type: string
       label: 'Mirador library use remote'
-    mirador_library_location:
-      type: string
-      label: 'Mirador library remote location'
     mirador_enabled_plugins:
       type: sequence
       label: 'Enabled Plugins'
