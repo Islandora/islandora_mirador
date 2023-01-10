@@ -98,7 +98,6 @@ class MiradorConfigForm extends ConfigFormBase {
     ];
   }
 
-
   /**
    * Constructs the Mirador config form.
    *
