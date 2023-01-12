@@ -22,6 +22,16 @@ function islandora_mirador_update_8001() {
 }
 
 /**
+ * Set a default config value for mirador_library_installation_type
+ * @return void
+ */
+function islandora_mirador_update_20001() {
+$config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
+  $config->set('mirador_library_installation_type', 'remote');
+    $config->save();
+}
+
+/**
  * Looks up or creates Mirador term.
  */
 function _get_or_create_tag() {

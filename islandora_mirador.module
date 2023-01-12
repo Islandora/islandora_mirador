@@ -6,6 +6,10 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Config\ImmutableConfig;
+
+use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
+use Drupal\islandora_mirador\IslandoraMiradorPluginInterface;
 
 /**
  * Implements hook_theme().
@@ -28,4 +32,45 @@ function islandora_mirador_theme() {
 function template_preprocess_mirador(&$variables) {
   $variables['mirador_view_id'] = Html::getUniqueId($variables['mirador_view_id']);
   $variables['#attached']['drupalSettings']['mirador_view_id'] = $variables['mirador_view_id'];
+
+  /**
+   * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
+   */
+  $mirador_plugin_manager = \Drupal::service('plugin.manager.islandora_mirador');
+
+  /**
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  $config = Drupal::service('config.factory')->get('islandora_mirador.settings');
+
+  $mirador_plugins = $mirador_plugin_manager->getDefinitions();
+  $enabled_plugins = $config->get('mirador_enabled_plugins');
+  $variables['#attached']['drupalSettings']['mirador_enabled_plugins'] = array_filter(array_values($enabled_plugins));
+
+  $window_config = [];
+  foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
+    if ($enabled_plugins[$plugin_id]) {
+      $plugin_instance = $mirador_plugin_manager->createInstance($plugin_id);
+      /**
+       * @var Drupal\islandora_mirador\IslandoraMiradorPluginInterface
+       */
+      $plugin_instance->windowConfigAlter($window_config);
+    }
+  }
+  $variables['#attached']['drupalSettings']['mirador_window_settings'] = $window_config;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function islandora_mirador_library_info_alter(&$libraries, $extension) {
+  if ($extension == 'islandora_mirador') {
+
+    $config = \Drupal::service('config.factory')->get('islandora_mirador.settings');
+    if ($config->get('mirador_library_installation_type') == 'local') {
+      unset($libraries['mirador']['remote']);
+      unset($libraries['mirador']['license']);
+      $libraries['mirador']['js']['/libraries/mirador/dist/main.js'] = [];
+    }
+  }
 }

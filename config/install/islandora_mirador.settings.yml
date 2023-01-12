@@ -1,1 +1,3 @@
+mirador_library_installation_type: 'remote'
+mirador_enabled_plugins: {  }
 iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/manifest'

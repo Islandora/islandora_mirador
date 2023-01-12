@@ -1,0 +1,4 @@
+services:
+  plugin.manager.islandora_mirador:
+    class: Drupal\islandora_mirador\IslandoraMiradorPluginManager
+    parent: default_plugin_manager

@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global Mirador, Drupal*/
+/*global Mirador, textOverlayPlugin, Drupal*/
 /**
  * @file
  * Displays Mirador viewer.
@@ -20,20 +20,24 @@
 
     function init(context,settings){
         if (!initialized){
-            initialized = true;
-            var miradorInstance = Mirador.viewer({
-                "id": base,
-                "manifests": {
-                    [settings.iiif_manifest_url]: {provider: "Islandora"}
-                },
-                "windows": [
+          initialized = true;
+
+          /*
+           Mirador
+           */
+          var miradorInstance = Mirador.viewer({
+            "id": base,
+            "manifests": {
+              [settings.iiif_manifest_url]: {provider: "Islandora"}
+            },
+            "window": settings.mirador_window_settings,
+            "windows": [
                     {
                         "manifestId": settings.iiif_manifest_url,
                         "thumbnailNavigationPosition": 'far-bottom'
                     }
                 ]
-            })
-
+            }, window.miradorPlugins);
         }
     }
     Drupal.Mirador = Drupal.Mirador || {};
