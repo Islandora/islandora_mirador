@@ -1,0 +1,26 @@
+id: islandora_mirador_tags
+migration_tags:
+  - islandora
+migration_group: islandora
+label: 'islandora_mirador tags'
+source:
+  plugin: embedded_data
+  data_rows:
+    - name: Mirador
+      description: Display using the Mirador viewer
+      url: https://projectmirador.org
+      vid: islandora_display
+  ids:
+    url:
+      type: string
+    vid:
+      type: string
+process:
+  name: name
+  description: description
+  field_external_uri: url
+  vid: vid
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies:
+  required: {  }
