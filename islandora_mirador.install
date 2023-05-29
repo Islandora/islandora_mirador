@@ -11,7 +11,7 @@ use Drupal\taxonomy\Entity\Term;
  * Implements hook_install().
  */
 function islandora_mirador_install($is_syncing) {
-  if (!_islandora_fits_term_exists()) {
+  if (!_islandora_mirador_term_exists()) {
     $callable = $is_syncing ? [\Drupal::messenger(), 'addStatus'] : [\Drupal::messenger(), 'addWarning'];
     $callable(t('A term in the taxonomy @vid with the URI @uri does not appear to exist. The @migration_id migration can be executed to create it.', [
       '@vid' => 'islandora_display',
