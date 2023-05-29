@@ -10,15 +10,41 @@ use Drupal\taxonomy\Entity\Term;
 /**
  * Implements hook_install().
  */
-function islandora_mirador_install() {
-  _get_or_create_tag();
+function islandora_mirador_install($is_syncing) {
+  if (!_islandora_fits_term_exists()) {
+    $callable = $is_syncing ? [\Drupal::messenger(), 'addStatus'] : [\Drupal::messenger(), 'addWarning'];
+    $callable(t('A term in the taxonomy @vid with the URI @uri does not appear to exist. The @migration_id migration can be executed to create it.', [
+      '@vid' => 'islandora_display',
+      '@uri' => 'https://projectmirador.org',
+      '@migration_id' => 'islandora_mirador_tags',
+    ]));
+  }
 }
 
 /**
- * Implements hook_update().
+ * Implements hook_requirements().
  */
-function islandora_mirador_update_8001() {
-  _get_or_create_tag();
+function islandora_mirador_requirements($phase) : array {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $term_exists = _islandora_mirador_term_exists();
+    $requirements['islandora_mirador_term_exists'] = [
+      'title' => t('Mirador Term Exists'),
+      'value' => $term_exists ? t('Exists') : t('Does not exist'),
+      'description' => t('Whether or not a term with the URI targeted by default Mirador viewer configuration exists. If viewer configurations were made to target another URI, this can probably be ignored.'),
+      'severity' => $term_exists ? REQUIREMENT_OK : REQUIREMENT_WARNING
+    ];
+  }
+
+  return $requirements;
+}
+
+/**
+ * Implements hook_update_last_removed.
+ */
+function islandora_mirador_update_last_removed() {
+  return 8001;
 }
 
 /**
@@ -32,18 +58,26 @@ $config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
 }
 
 /**
- * Looks up or creates Mirador term.
+ * Helper; determine if a term with the target URI exists.
+ *
+ * @return bool
+ *   TRUE if a term (at least one) with the target URI exists; otherwise, FALSE.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
  */
-function _get_or_create_tag() {
-  $term_name = 'Mirador';
-  $test_terms = taxonomy_term_load_multiple_by_name($term_name);
-  if (!$test_terms) {
-    $term = Term::create([
-      'parent' => [],
-      'name' => $term_name,
-      'vid' => 'islandora_display',
-      'description' => 'Display using the Mirador viewer',
-      'field_external_uri' => ['uri' => 'https://projectmirador.org'],
-    ])->save();
+function _islandora_mirador_term_exists() {
+  $table_exists = \Drupal::database()->schema()->tableExists('taxonomy_term__field_external_uri');
+  if (!$table_exists) {
+    // XXX: If the table does not exist, then avoid attempting to make a query
+    // making use of the non-existent table.
+    return FALSE;
   }
+
+  $query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery()
+    ->condition('vid', 'islandora_display')
+    ->condition('field_external_uri.uri', 'https://projectmirador.org')
+    ->count();
+  $count = $query->execute();
+  return $count > 0;
 }
