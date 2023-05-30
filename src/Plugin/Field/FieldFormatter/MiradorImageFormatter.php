@@ -127,16 +127,10 @@ class MiradorImageFormatter extends ImageFormatterBase implements ContainerFacto
       $node = $first_media->get('field_media_of')->entity;
       $id = 'mirador_' . $node->id();
       $manifest_url = $token_service->replace($iiif_url, ['node' => $node]);
-      $elements[] = [
+      $elements[$id] = [
         '#theme' => 'mirador',
         '#mirador_view_id' => $id,
         '#iiif_manifest_url' => $manifest_url,
-        '#attached' => [
-          'drupalSettings' => [
-            'iiif_manifest_url' => $manifest_url,
-            'mirador_view_id' => $id,
-          ],
-        ],
         '#settings' => $settings,
       ];
     }

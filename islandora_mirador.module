@@ -27,11 +27,10 @@ function islandora_mirador_theme() {
 }
 
 /**
- * Implements template_preprocess_*().
+ * Preprocess variables for mirador templates.
  */
 function template_preprocess_mirador(&$variables) {
   $variables['mirador_view_id'] = Html::getUniqueId($variables['mirador_view_id']);
-  $variables['#attached']['drupalSettings']['mirador_view_id'] = $variables['mirador_view_id'];
 
   /**
    * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
@@ -41,11 +40,11 @@ function template_preprocess_mirador(&$variables) {
   /**
    * @var \Drupal\Core\Config\ImmutableConfig
    */
-  $config = Drupal::service('config.factory')->get('islandora_mirador.settings');
+  $config = \Drupal::service('config.factory')->get('islandora_mirador.settings');
 
   $mirador_plugins = $mirador_plugin_manager->getDefinitions();
   $enabled_plugins = $config->get('mirador_enabled_plugins');
-  $variables['#attached']['drupalSettings']['mirador_enabled_plugins'] = array_filter(array_values($enabled_plugins));
+  $variables['#attached']['drupalSettings']['mirador']['enabled_plugins'] = array_filter(array_values($enabled_plugins));
 
   $window_config = [];
   foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
@@ -57,7 +56,32 @@ function template_preprocess_mirador(&$variables) {
       $plugin_instance->windowConfigAlter($window_config);
     }
   }
+
+  // XXX: Maintain the original properties, for now.
+  $variables['#attached']['drupalSettings']['mirador_view_id'] = $variables['mirador_view_id'];
   $variables['#attached']['drupalSettings']['mirador_window_settings'] = $window_config;
+  $variables['#attached']['drupalSettings']['mirador_enabled_plugins'] = $variables['#attached']['drupalSettings']['mirador']['enabled_plugins'];
+
+  // mirador.window_settings ... isn't presently used on its own?
+  $variables['#attached']['drupalSettings']['mirador']['window_settings'] = $window_config;
+
+  // mirador.viewers is an associative array mapping CSS/jQuery/once selectors
+  // to objects of mirador configuration.
+  $variables['#attached']['drupalSettings']['mirador']['viewers']["#{$variables['mirador_view_id']}"] = [
+    'id' => $variables['mirador_view_id'],
+    'manifests' => [
+      $variables['iiif_manifest_url'] => [
+        'provider' => 'Islandora'
+      ],
+    ],
+    'window' => $window_config,
+    'windows' => [
+      [
+        'manifestId' => $variables['iiif_manifest_url'],
+        'thumbnailNavigationPosition' => 'far-bottom',
+      ],
+    ]
+  ];
 }
 
 /**
