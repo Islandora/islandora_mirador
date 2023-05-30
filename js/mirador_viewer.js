@@ -15,7 +15,7 @@
             Object.entries(settings.mirador.viewers).forEach(entry => {
               const [base, values] = entry;
               once('mirador-viewer', base, context).forEach(() =>
-                Mirador.viewer(values, window.miradorPlugins)
+                Mirador.viewer(values, window.miradorPlugins || {})
               );
             });
         },
