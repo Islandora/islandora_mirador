@@ -110,11 +110,13 @@ class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $manifest_url = $this->token->replace($this->configuration['iiif_manifest_url'], ['node' => $node]);
     $id = 'mirador_' . $node->id();
     $build = [
-      //"#title" => $this->t('Mirador Viewer'),
-      //"#description" => $this->t("A div for mirador viewer"),
-      "#theme" => "mirador",
-      '#mirador_view_id' => $id,
-      '#iiif_manifest_url' => $manifest_url,
+      "#title" => $this->t('Mirador Viewer'),
+      "#description" => $this->t("A div for mirador viewer"),
+      'viewer' => [
+        "#theme" => "mirador",
+        '#mirador_view_id' => $id,
+        '#iiif_manifest_url' => $manifest_url,
+      ],
     ];
 
     return $build;
