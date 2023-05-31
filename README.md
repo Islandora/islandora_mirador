@@ -40,11 +40,12 @@ your webroot at libraries/mirador/dist/main.js.
 
 ## Usage
 
-The module provides a "Mirador" view mode that can be selected as a display hint when editing an Islandora Repository Item object.
+This module provides a Block that can be included via Structure>Blocks or Contexts. It takes a IIIF manifest.
+
+The module also provides a "Mirador" term in the `islandora_display` vocabulary that can be selected as a display hint when editing an Islandora Repository Item object. This can be used to trigger the above block placement.
 
 See the documentation for [Islandora IIIF](https://islandora.github.io/documentation/user-documentation/iiif/) for how to set up the content that powers the viewer.
 
-This module also provides a Block that can be included in custom displays.
 
 ## Configuration
 
@@ -58,7 +59,7 @@ plugins are included in the particular build of Mirador Integration. The Roberts
 
 - **IIIF Manifest URL:** You can set the URL pattern to retrieve the IIIF manifest for a piece of content. Default Islandora comes with a REST export view titled "IIIF Manifest", found at `/admin/structure/views/view/iiif_manifest`. The URL to provide can be found in the single page display's path settings.<br />![](docs/iiif_manifest_view_path_settings.png)
 <br />
-Replace `%node` with `[node:nid]`, and prepend with the domain of your installation:< br />![mirador_settings_manifest_url.png](docs%2Fmirador_settings_manifest_url.png)
+Replace `%node` with `[node:nid]`, and prepend with the domain of your installation:<br />![mirador_settings_manifest_url.png](docs%2Fmirador_settings_manifest_url.png)
 
 ## Plugins
 
@@ -110,16 +111,15 @@ within the viewer.
 To display a text overlay, Mirador must be provided with hOCR text data - which is OCR'd text that includes position information for the extracted text relative to the image that is being displayed. Here are the steps:
 1. Go to "Administration » Structure » Media Types", select the "**File**" media type, and click "**Manage Fields**".
 2. Add a new field to the **File** media type called "**hOCR extracted Text**". Set the allowed file extensions to "xml"<br />![media-file-field_hocr_extracted-file-label.png](docs%2Fmedia-file-field_hocr_extracted-file-label.png)  ![media-file-field_hocr_extracted-file-extensions.png](docs%2Fmedia-file-field_hocr_extracted-file-extensions.png)
-3. Ensure the new field is enabled in the Manage Display tab<br/>![media-file-field_hocr_extracted-file-display.png](docs%2Fmedia-file-field_hocr_extracted-file-display.png)
-4. Go to "Administration » Configuration » System » Actions" and click "**Create New Advanced Action**" with the "**Generate Extracted Text for Media Attachment**" action type.<br />![action-hocr-extracted-text.png](docs%2Faction-hocr-extracted-text.png)<br />
+3. Go to "Administration » Configuration » System » Actions" and click "**Create New Advanced Action**" with the "**Generate Extracted Text for Media Attachment**" action type.<br />![action-hocr-extracted-text.png](docs%2Faction-hocr-extracted-text.png)<br />
 ![action-hocr-extracted-text-config.png](docs%2Faction-hocr-extracted-text-config.png)<br />
     - Give the new action a name that mentions hOCR.<br />
     - In Format field select hOCR Extracted Text with Positional Data
     - For Destination File Field Name select the field you just created (`field_hocr_extracted_text`)
     - Keep *None* for the destination text field
     - And save the action
-5. Go to " Administration » Structure » Context" and edit the **Page Derivatives** context<br />![context-paged-derivatives-add-reaction.png](docs%2Fcontext-paged-derivatives-add-reaction.png)
-    - Click **Add Reaction** and choose "**"Derive File for Existing Media**"
+4. Go to " Administration » Structure » Context" and edit the **Page Derivatives** context<br />![context-paged-derivatives-add-reaction.png](docs%2Fcontext-paged-derivatives-add-reaction.png)
+    - Click **Add Reaction** and choose "**Derive File for Existing Media**"
     - In the select box choose the action you created above and save.
 
 ### Test hOCR
@@ -138,7 +138,7 @@ Assuming hOCR is [set up](#setting-up-hocr) and [tested](#test-hocr)...
 
 We will show how to set up IIIF manifests to include text overlay in Mirador for single pages, and for paged content.
 
-1. Go to "Administration » Structure » Views" and edit the **IIIF Manifest** view.
+1. Go to "Administration » Structure » Views" and edit the **IIIF Manifest** view. This is included in the Islandora Starter Site.
 2. There should be two displays, one for single-page nodes, and one for paged content. They are distinguished by their Contextual filters, found under the "Advanced" tab. In both cases, they have relationships for "field_media_of: Content" (required), and "field_media_use: Taxonomy term" (not required)<br />![view-iiif-manifest-all-relationships.png](docs%2Fview-iiif-manifest-all-relationships.png).<br /> However, they differ in their contextual filters:
     - The single-page contextual filter uses the current Media entity's "Media of" value, matching it with the "Content ID from the URL". The effect of this is to select all Media objects that are attached to the node identified by the current url.<br />![view-iiif-manifest-1page-contextual-filter.png](docs%2Fview-iiif-manifest-1page-contextual-filter.png)
     - The paged-content contextual filter uses the "Content: Member of" relationship to find Media objects that are attached to children of the current node, identified by "Content ID from URL".<br/>![view-iiif-manifest-paged-contextual-filter.png](docs%2Fview-iiif-manifest-paged-contextual-filter.png)
@@ -159,13 +159,13 @@ To test...
 
 ### Configuring the Mirador viewer to display for Pages and Paged Content using Contexts
 
-Islandora uses contexts to control which view mode is used when displaying different Islandora content types. _Note that the following instructions are just one of many possible ways to configure this._
+Islandora uses contexts to control which blocks are displayed on different Islandora nodes. _Note that the following instructions are just one of many possible ways to configure this._
 
 If not already present, you will need to add Mirador display contexts for single page and paged content types:<br />![context-mirador-displays.png](docs%2Fcontext-mirador-displays.png)
 
 Configure contexts at "Administration » Structure » Context".
 
-- For single page ("Mirador") context, we condition on the "Node has term" "Mirador" AND "Page", and set the reaction to set the view mode to "Mirador":<br />![context-mirador.png](docs%2Fcontext-mirador.png)<br /><br />
+- For single page ("Mirador") context, you can condition on the "Node has term" "Mirador" (if you like, AND "Page"), and set the reaction to Blocks. Use a View such as Media Display (part of Islandora Starter Site) to provide a block that displays the appropriate media using the "Mirador" view mode:<br />![context-mirador.png](docs%2Fcontext-mirador.png)<br /><br />
 
 - For multi-page ("Paged Content - Mirador") context, we condition on the "Node has term" "Mirador" AND "Paged Content"<br />![context-mirador-paged-condition.png](docs%2Fcontext-mirador-paged-condition.png)<br />...and set the reaction to show the Mirador block in the content region <br />![context-mirador-paged-block-content.png](docs%2Fcontext-mirador-paged-block-content.png)<br />... which is configured using `.../book-manifest` for the IIIF Manifest URL<br />![context-mirador-paged-block-config.png](docs%2Fcontext-mirador-paged-block-config.png)
 
