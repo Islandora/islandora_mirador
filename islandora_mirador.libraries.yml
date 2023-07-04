@@ -15,6 +15,7 @@ viewer:
     theme:
       css/mirador.css: {}
   dependencies:
+    - core/once
     - core/drupal
     - core/drupalSettings
     - islandora_mirador/mirador

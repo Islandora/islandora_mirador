@@ -112,14 +112,10 @@ class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $build = [
       "#title" => $this->t('Mirador Viewer'),
       "#description" => $this->t("A div for mirador viewer"),
-      "#theme" => "mirador",
-      '#mirador_view_id' => $id,
-      '#iiif_manifest_url' => $manifest_url,
-      "#attached" => [
-        'drupalSettings' => [
-          'iiif_manifest_url' => $manifest_url,
-          'mirador_view_id' => $id,
-        ],
+      'viewer' => [
+        "#theme" => "mirador",
+        '#mirador_view_id' => $id,
+        '#iiif_manifest_url' => $manifest_url,
       ],
     ];
 

@@ -2,6 +2,7 @@
 
 namespace Drupal\islandora_mirador\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -119,27 +120,29 @@ class MiradorImageFormatter extends ImageFormatterBase implements ContainerFacto
     if (empty($files)) {
       return $elements;
     }
+
     $iiif_url = $this->configFactory->get('islandora_mirador.settings')->get('iiif_manifest_url');
     $token_service = $this->token;
     foreach ($files as $file) {
+      $cache_meta = CacheableMetadata::createFromObject($file);
+
       $medias = $this->utils->getReferencingMedia($file->id());
       $first_media = array_values($medias)[0];
+      $cache_meta->addCacheableDependency($first_media);
       $node = $first_media->get('field_media_of')->entity;
+      $cache_meta->addCacheableDependency($node);
       $id = 'mirador_' . $node->id();
       $manifest_url = $token_service->replace($iiif_url, ['node' => $node]);
-      $elements[] = [
+      $renderable = [
         '#theme' => 'mirador',
         '#mirador_view_id' => $id,
         '#iiif_manifest_url' => $manifest_url,
-        '#attached' => [
-          'drupalSettings' => [
-            'iiif_manifest_url' => $manifest_url,
-            'mirador_view_id' => $id,
-          ],
-        ],
         '#settings' => $settings,
       ];
+      $cache_meta->applyTo($renderable);
+      $elements[] = $renderable;
     }
+
     return $elements;
   }
 
