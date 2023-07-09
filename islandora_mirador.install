@@ -77,6 +77,7 @@ function _islandora_mirador_term_exists() {
   $query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery()
     ->condition('vid', 'islandora_display')
     ->condition('field_external_uri.uri', 'https://projectmirador.org')
+    ->accessCheck(FALSE)
     ->count();
   $count = $query->execute();
   return $count > 0;
