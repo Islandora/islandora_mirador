@@ -1,7 +1,7 @@
 name: 'Islandora Mirador'
 type: module
 description: 'Configuration for a Mirador Block'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.3 || ^10
 package: 'Islandora'
 dependencies:
   - drupal:block
