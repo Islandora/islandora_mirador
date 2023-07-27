@@ -5,6 +5,6 @@ core_version_requirement: ^9.3 || ^10
 package: 'Islandora'
 dependencies:
   - drupal:block
-  - islandora_iiif:islandora_iiif
+  - islandora:islandora_iiif
   - token:token
 configure: islandora_mirador.miradorconfig
