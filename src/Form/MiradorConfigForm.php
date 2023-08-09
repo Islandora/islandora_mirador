@@ -2,16 +2,18 @@
 
 namespace Drupal\islandora_mirador\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\islandora_mirador\Annotation\IslandoraMiradorPlugin;
 use Drupal\islandora_mirador\IslandoraMiradorPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 /**
  * Mirador Settings Form.
  */
 class MiradorConfigForm extends ConfigFormBase {
+
   /**
    * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
    */
@@ -40,6 +42,7 @@ class MiradorConfigForm extends ConfigFormBase {
         'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
         'remote' => $this->t('Default remote location'),
       ],
+      '#description' => $this->t("For local, put the output of 'npm run webpack' of <a href=\"https://github.com/roblib/mirador-integration-islandora\">Mirador Integration Islandora</a> into web/library/mirador/dist/ and ensure it's named main.js."),
       '#default_value' => $config->get('mirador_library_installation_type'),
     ];
 
