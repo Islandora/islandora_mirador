@@ -22,6 +22,16 @@ $ composer require islandora/islandora_mirador
 $ drush en islandora_mirador
 ```
 
+
+If you wish to make use of Islandora's display hint
+system, and Mirador hasn't been set up by an installation
+stack such as ISLE or the Islandora Playbook, you will
+need to import the display hint using Drush:
+
+```bash
+drush migrate:import islandora_mirador_tags
+```
+
 ### Upgrading from Islandora Defaults
 
 This module was formerly distributed with Islandora Defaults. If you are upgrading
