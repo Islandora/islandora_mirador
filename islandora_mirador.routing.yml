@@ -5,3 +5,9 @@ islandora_mirador.miradorconfig:
     _title: 'Mirador Settings'
   requirements:
     _permission: 'administer site configuration'
+islandora_mirador.service_worker:
+  path: '/islandora_mirador_service_worker'
+  defaults:
+    _controller: '\Drupal\islandora_mirador\Controller\ServiceWorkerController::serve'
+  requirements:
+    _permission: 'access content'
