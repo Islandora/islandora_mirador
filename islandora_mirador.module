@@ -20,6 +20,7 @@ function islandora_mirador_theme() {
       'variables' => [
         'iiif_manifest_url' => NULL,
         'mirador_view_id' => NULL,
+        'thumbnail_navigation_position' => 'far-bottom',
       ],
       'template' => 'mirador',
     ],
@@ -78,7 +79,7 @@ function template_preprocess_mirador(&$variables) {
     'windows' => [
       [
         'manifestId' => $variables['iiif_manifest_url'],
-        'thumbnailNavigationPosition' => 'far-bottom',
+        'thumbnailNavigationPosition' => $variables['thumbnail_navigation_position'],
       ],
     ]
   ];
