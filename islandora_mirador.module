@@ -22,6 +22,7 @@ function islandora_mirador_theme() {
         'mirador_view_id' => NULL,
         'thumbnail_navigation_position' => 'far-bottom',
         'window_config' => [],
+        'workspace_config' => [],
       ],
       'template' => 'mirador',
     ],
@@ -59,8 +60,6 @@ function template_preprocess_mirador(&$variables) {
     }
   }
 
-
-
   // XXX: Maintain the original properties, for now.
   $variables['#attached']['drupalSettings']['mirador_view_id'] = $variables['mirador_view_id'];
   $variables['#attached']['drupalSettings']['mirador_window_settings'] = $window_config;
@@ -84,7 +83,8 @@ function template_preprocess_mirador(&$variables) {
         'manifestId' => $variables['iiif_manifest_url'],
         'thumbnailNavigationPosition' => $variables['thumbnail_navigation_position'],
       ],
-    ]
+    ],
+    'workspace' => $variables['workspace_config'],
   ];
 }
 
