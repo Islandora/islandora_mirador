@@ -21,6 +21,7 @@ function islandora_mirador_theme() {
         'iiif_manifest_url' => NULL,
         'mirador_view_id' => NULL,
         'thumbnail_navigation_position' => 'far-bottom',
+        'window_config' => [],
       ],
       'template' => 'mirador',
     ],
@@ -47,7 +48,7 @@ function template_preprocess_mirador(&$variables) {
   $enabled_plugins = $config->get('mirador_enabled_plugins');
   $variables['#attached']['drupalSettings']['mirador']['enabled_plugins'] = array_filter(array_values($enabled_plugins));
 
-  $window_config = [];
+  $window_config = $variables['window_config'];
   foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
     if ($enabled_plugins[$plugin_id]) {
       $plugin_instance = $mirador_plugin_manager->createInstance($plugin_id);
@@ -57,6 +58,8 @@ function template_preprocess_mirador(&$variables) {
       $plugin_instance->windowConfigAlter($window_config);
     }
   }
+
+
 
   // XXX: Maintain the original properties, for now.
   $variables['#attached']['drupalSettings']['mirador_view_id'] = $variables['mirador_view_id'];

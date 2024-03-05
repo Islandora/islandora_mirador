@@ -122,6 +122,9 @@ class MiradorBlock extends BlockBase implements ContainerFactoryPluginInterface 
     if (!empty($this->configuration['thumbnail_navigation_position'])) {
       $build['viewer']['#thumbnail_navigation_position'] = $this->configuration['thumbnail_navigation_position'];
     }
+    if (!empty($this->configuration['window_config'])) {
+      $build['viewer']['#window_config'] = $this->configuration['window_config'];
+    }
     return $build;
   }
 
