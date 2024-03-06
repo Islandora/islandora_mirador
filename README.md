@@ -182,6 +182,56 @@ Configure contexts at "Administration » Structure » Context".
 As noted previously, this is just one way to set up the Mirador viewer configurations. If, for example, you wanted to always use the Mirador viewer for pages and paged content, you could remove the "Mirador" condition from the "Node has term" condition in these contexts.
 
 
+## Theme Variables
+
+Mirador's appearance and behaviour is configured via settings passed
+to the JavaScript application. Mainly in 'window' and 'workspace' configuration
+array.
+
+These can be specified via theme variables or by passing
+them as arguments instantiating the Mirador block class.
+
+To hide the close button via a theme hook:
+
+```php
+function mymodule_preprocess_mirador(&$variables) {
+  $variables['window_config']['allowClose'] = FALSE;
+}
+```
+
+To make a minimal UI by instantiating the block:
+
+```php
+      $block = \Drupal::service('plugin.manager.block')->createInstance($viewer . '_block', [
+        'iiif_manifest_url' => "/node/$manifest_nid/manifest-single",
+        'thumbnail_navigation_position' => 'hidden',
+        'window_config' => [
+          'allowClose' => FALSE,
+          'allowMaximize' => FALSE,
+          'allowTopMenuButton' => FALSE,
+          'allowWindowSideBar' => FALSE,
+          'hideWindowTitle' => TRUE,
+          'panels' => [
+            'info' => FALSE,
+            'attribution' => FALSE,
+            '	  canvas' => FALSE,
+            'annotations' => FALSE,
+            'search' => FALSE,
+          ],
+        ],
+        'workspace_config' => [
+          'allowNewWindows' => FALSE,
+          'isWorkspaceAddVisible' => FALSE,
+          'workspaceControlPanel' => [
+            'enable' => FALSE,
+          ],
+
+        ],
+      ]);
+
+```
+
+See the Mirador FAQ for more options: https://github.com/ProjectMirador/mirador/wiki/M3---Mirador-3-Frequently-Asked-Questions
 
 ## Documentation
 
