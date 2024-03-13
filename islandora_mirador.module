@@ -51,7 +51,7 @@ function template_preprocess_mirador(&$variables) {
 
   $window_config = $variables['window_config'];
   foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
-    if ($enabled_plugins[$plugin_id]) {
+    if (isset($enabled_plugins[$plugin_id])) {
       $plugin_instance = $mirador_plugin_manager->createInstance($plugin_id);
       /**
        * @var Drupal\islandora_mirador\IslandoraMiradorPluginInterface
