@@ -35,6 +35,11 @@ function islandora_mirador_theme() {
 function template_preprocess_mirador(&$variables) {
   $variables['mirador_view_id'] = Html::getUniqueId($variables['mirador_view_id']);
 
+  if (!empty(\Drupal::hasService('jwt.authentication.jwt'))) {
+    $variables['#attached']['drupalSettings']['token'] = \Drupal::service('jwt.authentication.jwt')->generateToken();
+  }
+
+
   /**
    * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
    */
