@@ -12,6 +12,8 @@
      */
     Drupal.behaviors.Mirador = {
         attach: function (context, settings) {
+            Drupal.IslandoraMirador = Drupal.IslandoraMirador || {}
+            Drupal.IslandoraMirador.instances = Drupal.IslandoraMirador.instances || {}
             Object.entries(settings.mirador.viewers).forEach(entry => {
               const [base, values] = entry;
               once('mirador-viewer', base, context, settings).forEach(() => {
@@ -42,12 +44,10 @@
                         'token': settings.token
                       }})
                     ],
-                };
-
+                  };
                 }
-                Mirador.viewer(values, window.miradorPlugins || {})
-                }
-              );
+                Drupal.IslandoraMirador.instances[base] = Mirador.viewer(values, window.miradorPlugins || {})
+              });
             });
             if (settings.token !== undefined) {
               if ('serviceWorker' in navigator) {
@@ -69,7 +69,10 @@
         detach: function (context, settings) {
             Object.entries(settings.mirador.viewers).forEach(entry => {
               const [base, ] = entry;
-              once.remove('mirador-viewer', base, context);
+              const removed = once.remove('mirador-viewer', base, context);
+              if (removed.length > 0) {
+                delete Drupal.IslandoraMirador.instances[base];
+              }
             });
         }
     };

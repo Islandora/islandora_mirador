@@ -11,7 +11,7 @@
     "issues": "https://github.com/Islandora/documentation/issues"
   },
   "require": {
-    "islandora/islandora": "^2"
+    "drupal/islandora": "^2"
   },
   "conflict": {
     "drupal/core": "<=8",
