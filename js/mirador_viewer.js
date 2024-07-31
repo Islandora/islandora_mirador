@@ -47,7 +47,7 @@
                   };
                 }
                 Drupal.IslandoraMirador.instances[base] = Mirador.viewer(values, window.miradorPlugins || {})
-              });
+              );
             });
             if (settings.token !== undefined) {
               if ('serviceWorker' in navigator) {
