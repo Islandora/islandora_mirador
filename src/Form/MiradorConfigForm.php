@@ -39,11 +39,24 @@ class MiradorConfigForm extends ConfigFormBase {
     $form['mirador_library_fieldset']['mirador_library_installation_type'] = [
       '#type' => 'radios',
       '#options' => [
-        'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
         'remote' => $this->t('Default remote location'),
+        'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
+
       ],
       '#description' => $this->t("For local, put the output of 'npm run webpack' of <a href=\"https://github.com/roblib/mirador-integration-islandora\">Mirador Integration Islandora</a> into web/library/mirador/dist/ and ensure it's named main.js."),
       '#default_value' => $config->get('mirador_library_installation_type'),
+    ];
+
+    $form['mirador_library_fieldset']['mirador_library_minified'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Local library is minified'),
+      '#description' => $this->t("Check this if the local library has been minified."),
+      '#default_value' => $config->get('mirador_library_minified'),
+      '#states' => [
+        'visible' => [
+          ':input[name="mirador_library_installation_type"]' => ['value' => 'local'],
+        ],
+      ],
     ];
 
     $plugins = [];
@@ -88,6 +101,7 @@ class MiradorConfigForm extends ConfigFormBase {
     $config->set('mirador_library_installation_type', $form_state->getValue('mirador_library_installation_type'));
     $config->set('mirador_enabled_plugins', $form_state->getValue('mirador_enabled_plugins'));
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
+    $config->set('mirador_library_minified', $form_state->getValue('mirador_library_minified'));
     $config->save();
     parent::submitForm($form, $form_state);
   }
