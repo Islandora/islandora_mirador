@@ -11,7 +11,7 @@ mirador:
       minified: true
       attributes:
         # Calculated with/adapted from https://www.srihash.org/
-        integrity: sha384-xkwTEkgf5HcEc1ycL7NpyxdRs+8LnO+pdmFwJCY6Z+uBDM6pLeWTeO7n+NesgidO
+        integrity: sha384-H5YQxUhUbKfpBiKCSX4CVhogXKAWLM31Wj3STZe4TIhc4F1DzfOpGJUo8Qav7eoa
         crossorigin: anonymous
 viewer:
   version: 1.x
