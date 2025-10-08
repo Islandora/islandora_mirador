@@ -42,7 +42,7 @@ a Plugin Not Found error.
 The module can use either an instance of Mirador Integration hosted
 on the web, or deployed locally.
 
-The UPEI Robertson Library maintains a version of the Mirador library that includes image manipulation and text overlay plugins. This compiled library is available on the web at https://roblib.github.io/mirador-integration-islandora/islandora-mirador-0.1.0.js, and the github project is at https://github.com/roblib/mirador-integration-islandora.
+Islandora maintains a version of the Mirador library that includes image manipulation and text overlay plugins. This compiled library is available on the web at https://islandora.github.io/mirador-integration-islandora/islandora-mirador-0.1.1.js, and the github project is at https://github.com/islandora/mirador-integration-islandora.
 
 If you have a local build, put it in
 your webroot at libraries/mirador/dist/main.js.
@@ -64,7 +64,7 @@ The Islandora Mirador configuration page is located at "Administration » Config
 library's location (see [Mirador library](#mirador-library) above).
 
 - **Enabled Plugins:** You can also enable particular plugins. You need to know if the
-plugins are included in the particular build of Mirador Integration. The Robertson Library version of Mirador supports both the "Text Overlay" and "Mirador Image Tools" plugins.
+plugins are included in the particular build of Mirador Integration. The Islandora version of Mirador supports both the "Text Overlay" and "Mirador Image Tools" plugins.
 
 - **IIIF Manifest URL:** You can set the URL pattern to retrieve the IIIF manifest for a piece of content. Default Islandora comes with a REST export view titled "IIIF Manifest", found at `/admin/structure/views/view/iiif_manifest`. The URL to provide can be found in the single page display's path settings.<br />![](docs/iiif_manifest_view_path_settings.png)
 <br />
