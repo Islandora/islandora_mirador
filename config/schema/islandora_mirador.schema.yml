@@ -14,3 +14,6 @@ islandora_mirador.settings:
     iiif_manifest_url:
       type: string
       label: 'URL pattern for IIIF manifest view'
+    mirador_library_minified:
+      type: boolean
+      label: 'Use minified Mirador library'
