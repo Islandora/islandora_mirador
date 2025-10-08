@@ -99,7 +99,7 @@ function islandora_mirador_library_info_alter(&$libraries, $extension) {
     if ($config->get('mirador_library_installation_type') == 'local') {
       unset($libraries['mirador']['remote']);
       unset($libraries['mirador']['license']);
-      $minified = (bool) $config->get('mirador_library_minified') ?? FALSE;
+      $minified = (bool) $config->get('mirador_library_minified');
       $libraries['mirador']['js']['/libraries/mirador/dist/main.js'] = ['minified' => $minified];
     }
   }
