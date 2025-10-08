@@ -6,12 +6,12 @@ mirador:
     url: https://github.com/ProjectMirador/mirador/blob/master/LICENSE
     gpl-compatible: true
   js:
-    https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@gh-pages/islandora-mirador-0.1.0.js:
+    https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@gh-pages/islandora-mirador-0.1.1.js:
       type: external
       minified: true
       attributes:
         # Calculated with/adapted from https://www.srihash.org/
-        integrity: sha384-xkwTEkgf5HcEc1ycL7NpyxdRs+8LnO+pdmFwJCY6Z+uBDM6pLeWTeO7n+NesgidO
+        integrity: sha384-H5YQxUhUbKfpBiKCSX4CVhogXKAWLM31Wj3STZe4TIhc4F1DzfOpGJUo8Qav7eoa
         crossorigin: anonymous
 viewer:
   version: 1.x
