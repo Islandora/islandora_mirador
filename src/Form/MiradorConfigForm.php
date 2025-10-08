@@ -42,7 +42,7 @@ class MiradorConfigForm extends ConfigFormBase {
         'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
         'remote' => $this->t('Default remote location'),
       ],
-      '#description' => $this->t("For local, put the output of 'npm run webpack' of <a href=\"https://github.com/roblib/mirador-integration-islandora\">Mirador Integration Islandora</a> into web/library/mirador/dist/ and ensure it's named main.js."),
+      '#description' => $this->t("For local, put the output of 'npm run webpack' of <a href=\"https://github.com/islandora/mirador-integration-islandora\">Mirador Integration Islandora</a> into web/library/mirador/dist/ and ensure it's named main.js."),
       '#default_value' => $config->get('mirador_library_installation_type'),
     ];
 
