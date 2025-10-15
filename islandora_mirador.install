@@ -82,3 +82,15 @@ function _islandora_mirador_term_exists() {
   $count = $query->execute();
   return $count > 0;
 }
+
+/**
+ * Add 'mirador_library_minified' to module config.
+ */
+function mirador_integration_update_10001() {
+  $config = \Drupal::configFactory()->getEditable('mirador_integration.settings');
+  if ($config->get('mirador_library_minified') === NULL) {
+    $config->set('mirador_library_minified', FALSE);
+    $config->save();
+    \Drupal::logger('mirador_integration')->info('Added mirador_library_minified to configuration.');
+  }
+}

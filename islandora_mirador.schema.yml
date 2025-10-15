@@ -17,3 +17,4 @@ islandora_mirador.settings:
     mirador_library_minified:
       type: boolean
       label: 'Use minified Mirador library'
+      nullable: true

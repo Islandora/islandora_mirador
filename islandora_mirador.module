@@ -43,7 +43,8 @@ function template_preprocess_mirador(&$variables) {
   /**
    * @var \Drupal\Core\Config\ImmutableConfig
    */
-  $config = \Drupal::service('config.factory')->get('islandora_mirador.settings');
+  $config = \Drupal::service('config.factory')
+    ->get('islandora_mirador.settings');
 
   $mirador_plugins = $mirador_plugin_manager->getDefinitions();
   $enabled_plugins = $config->get('mirador_enabled_plugins');
@@ -74,7 +75,7 @@ function template_preprocess_mirador(&$variables) {
     'id' => $variables['mirador_view_id'],
     'manifests' => [
       $variables['iiif_manifest_url'] => [
-        'provider' => 'Islandora'
+        'provider' => 'Islandora',
       ],
     ],
     'window' => $window_config,
@@ -93,13 +94,13 @@ function template_preprocess_mirador(&$variables) {
  */
 function islandora_mirador_library_info_alter(&$libraries, $extension) {
   if ($extension == 'islandora_mirador') {
-
-    $config = \Drupal::service('config.factory')->get('islandora_mirador.settings');
+    $config = \Drupal::service('config.factory')
+      ->get('islandora_mirador.settings');
     if ($config->get('mirador_library_installation_type') == 'local') {
       unset($libraries['mirador']['remote']);
       unset($libraries['mirador']['license']);
-      unset($libraries['mirador']['js']);
-      $libraries['mirador']['js']['/libraries/mirador/dist/main.js'] = [];
+      $minified = (bool) $config->get('mirador_library_minified');
+      $libraries['mirador']['js']['/libraries/mirador/dist/main.js'] = ['minified' => $minified];
     }
   }
 }
