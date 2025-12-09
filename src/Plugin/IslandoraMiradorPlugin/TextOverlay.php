@@ -20,11 +20,26 @@ class TextOverlay extends IslandoraMiradorPluginPluginBase {
    * {@InheritDoc}
    */
   public function windowConfigAlter(array &$windowConfig) {
-    $windowConfig['textOverlay'] = [
-      "enabled" => true,
-      "selectable" => true,
-      "visible" => false,
-    ];
+    // Get the config to check if this plugin is enabled.
+    $config = \Drupal::service('config.factory')
+      ->get('islandora_mirador.settings');
+    $enabled_plugins = $config->get('mirador_enabled_plugins');
+    
+    if (!empty($enabled_plugins['textOverlayPlugin'])) {
+      // Enabled config - checkbox is checked.
+      $windowConfig['textOverlay'] = [
+        "enabled" => true,
+        "selectable" => true,
+        "visible" => false,
+      ];
+    } else {
+      // Disabled config - checkbox is unchecked.
+      $windowConfig['textOverlay'] = [
+        "enabled" => false,
+        "selectable" => false,
+        "visible" => false,
+      ];
+    }
   }
 
 }

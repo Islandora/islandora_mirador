@@ -20,8 +20,20 @@ class MiradorImageTools extends IslandoraMiradorPluginPluginBase {
    * {@InheritDoc}
    */
   public function windowConfigAlter(array &$windowConfig) {
-    $windowConfig['imageToolsEnabled'] = true;
-    $windowConfig['imageToolsOpen'] = true;
+    // Get the config to check if this plugin is enabled.
+    $config = \Drupal::service('config.factory')
+      ->get('islandora_mirador.settings');
+    $enabled_plugins = $config->get('mirador_enabled_plugins');
+    
+    if (!empty($enabled_plugins['miradorImageToolsPlugin'])) {
+      // Enabled config - checkbox is checked.
+      $windowConfig['imageToolsEnabled'] = true;
+      $windowConfig['imageToolsOpen'] = true;
+    } else {
+      // Disabled config - checkbox is unchecked.
+      $windowConfig['imageToolsEnabled'] = false;
+      $windowConfig['imageToolsOpen'] = false;
+    }
   }
 
 }
