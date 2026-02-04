@@ -39,7 +39,7 @@ function islandora_mirador_requirements($phase) : array {
 }
 
 /**
- * Implements hook_update_last_removed.
+ * Implements hook_update_last_removed().
  */
 function islandora_mirador_update_last_removed() {
   return 8001;
@@ -47,8 +47,6 @@ function islandora_mirador_update_last_removed() {
 
 /**
  * Set a default config value for mirador_library_installation_type.
- *
- * @return void
  */
 function islandora_mirador_update_20001() {
   $config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');

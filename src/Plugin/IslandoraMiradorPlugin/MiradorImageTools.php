@@ -16,7 +16,7 @@ use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
 class MiradorImageTools extends IslandoraMiradorPluginPluginBase {
 
   /**
-   * {@InheritDoc}
+   * {@inheritdoc}
    */
   public function windowConfigAlter(array &$windowConfig) {
     $windowConfig['imageToolsEnabled'] = TRUE;

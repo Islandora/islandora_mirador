@@ -15,6 +15,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class MiradorConfigForm extends ConfigFormBase {
 
   /**
+   * The Mirador plugin manager.
+   *
    * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
    */
   protected $miradorPluginManager;
