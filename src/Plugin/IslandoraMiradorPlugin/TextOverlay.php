@@ -3,7 +3,6 @@
 namespace Drupal\islandora_mirador\Plugin\IslandoraMiradorPlugin;
 
 use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Plugin implementation of the islandora_mirador.
@@ -17,13 +16,13 @@ use Drupal\Core\Form\FormStateInterface;
 class TextOverlay extends IslandoraMiradorPluginPluginBase {
 
   /**
-   * {@InheritDoc}
+   * {@inheritdoc}
    */
   public function windowConfigAlter(array &$windowConfig) {
     $windowConfig['textOverlay'] = [
-      "enabled" => true,
-      "selectable" => true,
-      "visible" => false,
+      "enabled" => TRUE,
+      "selectable" => TRUE,
+      "visible" => FALSE,
     ];
   }
 

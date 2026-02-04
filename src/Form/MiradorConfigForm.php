@@ -3,9 +3,9 @@
 namespace Drupal\islandora_mirador\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\islandora_mirador\Annotation\IslandoraMiradorPlugin;
 use Drupal\islandora_mirador\IslandoraMiradorPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -15,6 +15,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class MiradorConfigForm extends ConfigFormBase {
 
   /**
+   * The Mirador plugin manager.
+   *
    * @var \Drupal\islandora_mirador\IslandoraMiradorPluginManager
    */
   protected $miradorPluginManager;
@@ -40,7 +42,7 @@ class MiradorConfigForm extends ConfigFormBase {
       '#type' => 'radios',
       '#options' => [
         'remote' => $this->t('Default remote location'),
-        'local'=> $this->t('Local library placed in /libraries inside your webroot.'),
+        'local' => $this->t('Local library placed in /libraries inside your webroot.'),
 
       ],
       '#description' => $this->t("For local, put the output of 'npm run webpack' of <a href=\"https://github.com/islandora/mirador-integration-islandora\">Mirador Integration Islandora</a> into web/library/mirador/dist/ and ensure it's named main.js."),
@@ -68,7 +70,7 @@ class MiradorConfigForm extends ConfigFormBase {
       '#description' => $this->t('Which plugins to enable. The plugins must be compiled in to the application. See the documentation for instructions.'),
       '#type' => 'checkboxes',
       '#options' => $plugins,
-      '#default_value' =>  $config->get('mirador_enabled_plugins'),
+      '#default_value' => $config->get('mirador_enabled_plugins'),
     ];
     $form['iiif_manifest_url_fieldset'] = [
       '#type' => 'fieldset',
@@ -118,13 +120,19 @@ class MiradorConfigForm extends ConfigFormBase {
   /**
    * Constructs the Mirador config form.
    *
-   * @param ConfigFactoryInterface $config_factory
-   * The configuration factory.
-   * @param IslandoraMiradorPluginManager $mirador_plugin_manager
-   * The Mirador Plugin Manager interface.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config_manager
+   *   The typed config manager.
+   * @param \Drupal\islandora_mirador\Annotation\IslandoraMiradorPluginManager $mirador_plugin_manager
+   *   The Mirador Plugin Manager interface.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, IslandoraMiradorPluginManager $mirador_plugin_manager) {
-    parent::__construct($config_factory);
+  public function __construct(
+    ConfigFactoryInterface $config_factory,
+    TypedConfigManagerInterface $typed_config_manager,
+    IslandoraMiradorPluginManager $mirador_plugin_manager,
+  ) {
+    parent::__construct($config_factory, $typed_config_manager);
     $this->miradorPluginManager = $mirador_plugin_manager;
   }
 
@@ -134,6 +142,7 @@ class MiradorConfigForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
+      $container->get('config.typed'),
       $container->get('plugin.manager.islandora_mirador')
     );
   }

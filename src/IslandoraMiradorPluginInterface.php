@@ -16,11 +16,13 @@ interface IslandoraMiradorPluginInterface {
   public function label();
 
   /**
-   * Lets a plugin inject custom settings into the
-   * Mirador window JSON array.
+   * Lets a plugin inject custom settings into the Mirador window JSON array.
    *
    * @param array $windowConfig
+   *   The window configuration array to alter.
+   *
    * @return void
+   *   Returns nothing.
    */
   public function windowConfigAlter(array &$windowConfig);
 

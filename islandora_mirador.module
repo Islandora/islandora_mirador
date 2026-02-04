@@ -6,10 +6,6 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Config\ImmutableConfig;
-
-use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
-use Drupal\islandora_mirador\IslandoraMiradorPluginInterface;
 
 /**
  * Implements hook_theme().
