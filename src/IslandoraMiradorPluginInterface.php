@@ -20,6 +20,7 @@ interface IslandoraMiradorPluginInterface {
    * Mirador window JSON array.
    *
    * @param array $windowConfig
+   *
    * @return void
    */
   public function windowConfigAlter(array &$windowConfig);

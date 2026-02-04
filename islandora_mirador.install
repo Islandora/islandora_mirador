@@ -5,8 +5,6 @@
  * Install/update hook implementations.
  */
 
-use Drupal\taxonomy\Entity\Term;
-
 /**
  * Implements hook_install().
  */
@@ -33,7 +31,7 @@ function islandora_mirador_requirements($phase) : array {
       'title' => t('Mirador Term Exists'),
       'value' => $term_exists ? t('Exists') : t('Does not exist'),
       'description' => t('Whether or not a term with the URI targeted by default Mirador viewer configuration exists. If viewer configurations were made to target another URI, this can probably be ignored.'),
-      'severity' => $term_exists ? REQUIREMENT_OK : REQUIREMENT_WARNING
+      'severity' => $term_exists ? REQUIREMENT_OK : REQUIREMENT_WARNING,
     ];
   }
 
@@ -48,13 +46,14 @@ function islandora_mirador_update_last_removed() {
 }
 
 /**
- * Set a default config value for mirador_library_installation_type
+ * Set a default config value for mirador_library_installation_type.
+ *
  * @return void
  */
 function islandora_mirador_update_20001() {
-$config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
+  $config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
   $config->set('mirador_library_installation_type', 'remote');
-    $config->save();
+  $config->save();
 }
 
 /**

@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ 2.x ]
+  pull_request:
+    branches: [ 2.x ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    continue-on-error: false
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ["8.3", "8.4"]
+        drupal-version: ["10.5", "10.6", "11.2", "11.3"]
+    name: PHP ${{ matrix.php-versions }} | drupal ${{ matrix.drupal-version }}
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
+      - name: create docker network
+        run: docker network create ci-default
+
+      - name: PHPUNIT tests
+        run: |
+          docker run \
+            --rm \
+            --name drupal \
+            --hostname drupal \
+            --volume $(pwd):/var/www/drupal/web/modules/contrib/$ENABLE_MODULES:ro \
+            --env ENABLE_MODULES \
+            --network ci-default \
+           ghcr.io/islandora/ci:${{ matrix.drupal-version }}-php${{ matrix.php-versions }}
+        env:
+          ENABLE_MODULES: advanced_search

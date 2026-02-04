@@ -3,7 +3,6 @@
 namespace Drupal\islandora_mirador\Plugin\IslandoraMiradorPlugin;
 
 use Drupal\islandora_mirador\IslandoraMiradorPluginPluginBase;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Plugin implementation of the islandora_mirador.
@@ -20,8 +19,8 @@ class MiradorImageTools extends IslandoraMiradorPluginPluginBase {
    * {@InheritDoc}
    */
   public function windowConfigAlter(array &$windowConfig) {
-    $windowConfig['imageToolsEnabled'] = true;
-    $windowConfig['imageToolsOpen'] = true;
+    $windowConfig['imageToolsEnabled'] = TRUE;
+    $windowConfig['imageToolsOpen'] = TRUE;
   }
 
 }
