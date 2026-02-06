@@ -52,7 +52,7 @@ function template_preprocess_mirador(&$variables) {
   $window_config = $variables['window_config'];
   foreach ($mirador_plugins as $plugin_id => $plugin_definition) {
 
-    // Always call plugins - they will check their own state
+    // Always call plugins - they will check their own state.
     /**
      * @var Drupal\islandora_mirador\IslandoraMiradorPluginInterface
      */

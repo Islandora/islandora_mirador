@@ -54,7 +54,7 @@ class TextOverlay extends IslandoraMiradorPluginPluginBase implements ContainerF
   }
 
   /**
-   * {@InheritDoc}
+   * {@inheritdoc}
    */
   public function windowConfigAlter(array &$windowConfig) {
     // Get the config to check if this plugin is enabled.
@@ -64,16 +64,17 @@ class TextOverlay extends IslandoraMiradorPluginPluginBase implements ContainerF
     if (!empty($enabled_plugins['textOverlayPlugin'])) {
       // Enabled config - checkbox is checked.
       $windowConfig['textOverlay'] = [
-        "enabled" => true,
-        "selectable" => true,
-        "visible" => false,
+        "enabled" => TRUE,
+        "selectable" => TRUE,
+        "visible" => FALSE,
       ];
-    } else {
+    } 
+    else {
       // Disabled config - checkbox is unchecked.
       $windowConfig['textOverlay'] = [
-        "enabled" => false,
-        "selectable" => false,
-        "visible" => false,
+        "enabled" => FALSE,
+        "selectable" => FALSE,
+        "visible" => FALSE,
       ];
     }
   }
