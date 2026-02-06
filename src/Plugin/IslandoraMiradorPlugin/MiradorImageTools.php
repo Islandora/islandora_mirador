@@ -65,7 +65,8 @@ class MiradorImageTools extends IslandoraMiradorPluginPluginBase implements Cont
       // Enabled config - checkbox is checked.
       $windowConfig['imageToolsEnabled'] = TRUE;
       $windowConfig['imageToolsOpen'] = TRUE;
-    } else {
+    }
+    else {
       // Disabled config - checkbox is unchecked.
       $windowConfig['imageToolsEnabled'] = FALSE;
       $windowConfig['imageToolsOpen'] = FALSE;
