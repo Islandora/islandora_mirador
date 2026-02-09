@@ -61,22 +61,13 @@ class TextOverlay extends IslandoraMiradorPluginPluginBase implements ContainerF
     $config = $this->configFactory->get('islandora_mirador.settings');
     $enabled_plugins = $config->get('mirador_enabled_plugins');
 
-    if (!empty($enabled_plugins['textOverlayPlugin'])) {
-      // Enabled config - checkbox is checked.
-      $windowConfig['textOverlay'] = [
-        "enabled" => TRUE,
-        "selectable" => TRUE,
-        "visible" => FALSE,
-      ];
-    }
-    else {
-      // Disabled config - checkbox is unchecked.
-      $windowConfig['textOverlay'] = [
-        "enabled" => FALSE,
-        "selectable" => FALSE,
-        "visible" => FALSE,
-      ];
-    }
+    // Enable config based on the checkbox.
+    $enabled = !empty($enabled_plugins['textOverlayPlugin']);
+    $windowConfig['textOverlay'] = [
+      "enabled" => $enabled,
+      "selectable" => $enabled,
+      "visible" => FALSE,
+    ];
   }
 
 }
