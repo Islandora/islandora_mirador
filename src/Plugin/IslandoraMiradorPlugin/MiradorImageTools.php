@@ -61,16 +61,9 @@ class MiradorImageTools extends IslandoraMiradorPluginPluginBase implements Cont
     $config = $this->configFactory->get('islandora_mirador.settings');
     $enabled_plugins = $config->get('mirador_enabled_plugins');
 
-    if (!empty($enabled_plugins['miradorImageToolsPlugin'])) {
-      // Enabled config - checkbox is checked.
-      $windowConfig['imageToolsEnabled'] = TRUE;
-      $windowConfig['imageToolsOpen'] = TRUE;
-    }
-    else {
-      // Disabled config - checkbox is unchecked.
-      $windowConfig['imageToolsEnabled'] = FALSE;
-      $windowConfig['imageToolsOpen'] = FALSE;
-    }
+    $enabled = !empty($enabled_plugins['miradorImageToolsPlugin']);
+    $windowConfig['imageToolsEnabled'] = $enabled;
+    $windowConfig['imageToolsOpen'] = $enabled;
   }
 
 }

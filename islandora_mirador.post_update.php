@@ -23,8 +23,8 @@ function islandora_mirador_post_update_enable_plugins() {
   $changed = FALSE;
 
   foreach ($plugins_to_add as $plugin_id) {
-    if (!in_array($plugin_id, $enabled_plugins)) {
-      $enabled_plugins[] = $plugin_id;
+    if (empty($enabled_plugins[$plugin_id])) {
+      $enabled_plugins[$plugin_id] = $plugin_id;
       $changed = TRUE;
     }
   }

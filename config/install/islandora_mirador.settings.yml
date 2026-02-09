@@ -1,6 +1,6 @@
 mirador_library_installation_type: 'remote'
 mirador_enabled_plugins: 
-  - miradorImageToolsPlugin
-  - textOverlayPlugin
+  miradorImageToolsPlugin: miradorImageToolsPlugin
+  textOverlayPlugin: textOverlayPlugin
 iiif_manifest_url: '[node:url:unaliased:absolute]/manifest'
 mirador_library_minified: false
