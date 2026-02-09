@@ -31,6 +31,7 @@ class IslandoraMiradorPluginManagerTest extends KernelTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
+    $this->installConfig(['islandora_mirador']);
     $this->pluginManager = $this->container->get('plugin.manager.islandora_mirador');
   }
 
