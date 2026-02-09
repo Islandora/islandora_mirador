@@ -11,7 +11,7 @@
 function islandora_mirador_post_update_enable_plugins() {
   $config_factory = \Drupal::configFactory();
   $config = $config_factory->getEditable('islandora_mirador.settings');
-  
+
   // Get currently enabled plugins. Default to empty array.
   $enabled_plugins = $config->get('mirador_enabled_plugins');
   if (!is_array($enabled_plugins)) {
