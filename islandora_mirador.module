@@ -68,10 +68,16 @@ function template_preprocess_mirador(&$variables) {
   // mirador.window_settings ... isn't presently used on its own?
   $variables['#attached']['drupalSettings']['mirador']['window_settings'] = $window_config;
 
+  $language = 'en';
+  if ($config->get('mirador_language_support')) {
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  }
+
   // mirador.viewers is an associative array mapping CSS/jQuery/once selectors
   // to objects of mirador configuration.
   $variables['#attached']['drupalSettings']['mirador']['viewers']["#{$variables['mirador_view_id']}"] = [
     'id' => $variables['mirador_view_id'],
+    'language' => $language,
     'manifests' => [
       $variables['iiif_manifest_url'] => [
         'provider' => 'Islandora',
