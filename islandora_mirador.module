@@ -68,10 +68,35 @@ function template_preprocess_mirador(&$variables) {
   // mirador.window_settings ... isn't presently used on its own?
   $variables['#attached']['drupalSettings']['mirador']['window_settings'] = $window_config;
 
+  // Build theme configuration from settings.
+  $selected_theme = $config->get('mirador_selected_theme');
+  $theme_config = [];
+  $light_primary = $config->get('mirador_theme_light_primary');
+  $light_secondary = $config->get('mirador_theme_light_secondary');
+  $dark_primary = $config->get('mirador_theme_dark_primary');
+  $dark_secondary = $config->get('mirador_theme_dark_secondary');
+  if ($light_primary || $light_secondary) {
+    if ($light_primary) {
+      $theme_config['light']['palette']['primary']['main'] = $light_primary;
+    }
+    if ($light_secondary) {
+      $theme_config['light']['palette']['secondary']['main'] = $light_secondary;
+    }
+  }
+  if ($dark_primary || $dark_secondary) {
+    if ($dark_primary) {
+      $theme_config['dark']['palette']['primary']['main'] = $dark_primary;
+    }
+    if ($dark_secondary) {
+      $theme_config['dark']['palette']['secondary']['main'] = $dark_secondary;
+    }
+  }
+
   // mirador.viewers is an associative array mapping CSS/jQuery/once selectors
   // to objects of mirador configuration.
-  $variables['#attached']['drupalSettings']['mirador']['viewers']["#{$variables['mirador_view_id']}"] = [
+  $viewer_config = [
     'id' => $variables['mirador_view_id'],
+    'selectedTheme' => $selected_theme,
     'manifests' => [
       $variables['iiif_manifest_url'] => [
         'provider' => 'Islandora',
@@ -86,6 +111,10 @@ function template_preprocess_mirador(&$variables) {
     ],
     'workspace' => $variables['workspace_config'],
   ];
+  if (!empty($theme_config)) {
+    $viewer_config['themes'] = $theme_config;
+  }
+  $variables['#attached']['drupalSettings']['mirador']['viewers']["#{$variables['mirador_view_id']}"] = $viewer_config;
 }
 
 /**

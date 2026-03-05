@@ -17,3 +17,18 @@ islandora_mirador.settings:
     mirador_library_minified:
       type: boolean
       label: 'Use minified Mirador library'
+    mirador_selected_theme:
+      type: string
+      label: 'Selected Mirador theme'
+    mirador_theme_light_primary:
+      type: string
+      label: 'Light theme primary color'
+    mirador_theme_light_secondary:
+      type: string
+      label: 'Light theme secondary color'
+    mirador_theme_dark_primary:
+      type: string
+      label: 'Dark theme primary color'
+    mirador_theme_dark_secondary:
+      type: string
+      label: 'Dark theme secondary color'
