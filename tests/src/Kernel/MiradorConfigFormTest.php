@@ -49,7 +49,8 @@ class MiradorConfigFormTest extends KernelTestBase {
     $form_object = MiradorConfigForm::create($this->container);
     $form_state = new FormState();
     $form_state->setValues($values);
-    $form_object->validateForm([], $form_state);
+    $form = [];
+    $form_object->validateForm($form, $form_state);
     return $form_state;
   }
 
@@ -67,6 +68,16 @@ class MiradorConfigFormTest extends KernelTestBase {
   public function testValidDarkTheme(): void {
     $values = $this->validValues();
     $values['mirador_selected_theme'] = 'dark';
+    $form_state = $this->validateWithValues($values);
+    $this->assertFalse($form_state->hasAnyErrors());
+  }
+
+  /**
+   * Tests that the system theme option is valid.
+   */
+  public function testValidSystemTheme(): void {
+    $values = $this->validValues();
+    $values['mirador_selected_theme'] = 'system';
     $form_state = $this->validateWithValues($values);
     $this->assertFalse($form_state->hasAnyErrors());
   }
