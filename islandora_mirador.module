@@ -81,21 +81,17 @@ function template_preprocess_mirador(&$variables) {
   $light_secondary = $config->get('mirador_theme_light_secondary');
   $dark_primary = $config->get('mirador_theme_dark_primary');
   $dark_secondary = $config->get('mirador_theme_dark_secondary');
-  if ($light_primary || $light_secondary) {
-    if ($light_primary) {
-      $theme_config['light']['palette']['primary']['main'] = $light_primary;
-    }
-    if ($light_secondary) {
-      $theme_config['light']['palette']['secondary']['main'] = $light_secondary;
-    }
+  if ($light_primary) {
+    $theme_config['light']['palette']['primary']['main'] = $light_primary;
   }
-  if ($dark_primary || $dark_secondary) {
-    if ($dark_primary) {
-      $theme_config['dark']['palette']['primary']['main'] = $dark_primary;
-    }
-    if ($dark_secondary) {
-      $theme_config['dark']['palette']['secondary']['main'] = $dark_secondary;
-    }
+  if ($light_secondary) {
+    $theme_config['light']['palette']['secondary']['main'] = $light_secondary;
+  }
+  if ($dark_primary) {
+    $theme_config['dark']['palette']['primary']['main'] = $dark_primary;
+  }
+  if ($dark_secondary) {
+    $theme_config['dark']['palette']['secondary']['main'] = $dark_secondary;
   }
 
   // mirador.viewers is an associative array mapping CSS/jQuery/once selectors
