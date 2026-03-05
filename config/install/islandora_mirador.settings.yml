@@ -4,3 +4,4 @@ mirador_enabled_plugins:
   textOverlayPlugin: textOverlayPlugin
 iiif_manifest_url: '[node:url:unaliased:absolute]/manifest'
 mirador_library_minified: false
+mirador_language_support: false
