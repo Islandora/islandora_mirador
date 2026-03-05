@@ -17,6 +17,9 @@ islandora_mirador.settings:
     mirador_library_minified:
       type: boolean
       label: 'Use minified Mirador library'
+    mirador_language_support:
+      type: boolean
+      label: 'Enable language support'
     mirador_selected_theme:
       type: string
       label: 'Selected Mirador theme'

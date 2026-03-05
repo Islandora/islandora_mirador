@@ -68,6 +68,12 @@ function template_preprocess_mirador(&$variables) {
   // mirador.window_settings ... isn't presently used on its own?
   $variables['#attached']['drupalSettings']['mirador']['window_settings'] = $window_config;
 
+  $language = 'en';
+  if ($config->get('mirador_language_support')) {
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $variables['#cache']['contexts'][] = 'languages:language_interface';
+  }
+
   // Build theme configuration from settings.
   $selected_theme = $config->get('mirador_selected_theme');
   $theme_config = [];
@@ -97,6 +103,7 @@ function template_preprocess_mirador(&$variables) {
   $viewer_config = [
     'id' => $variables['mirador_view_id'],
     'selectedTheme' => $selected_theme,
+    'language' => $language,
     'manifests' => [
       $variables['iiif_manifest_url'] => [
         'provider' => 'Islandora',
@@ -131,4 +138,13 @@ function islandora_mirador_library_info_alter(&$libraries, $extension) {
       $libraries['mirador']['js']['/libraries/mirador/dist/main.js'] = ['minified' => $minified];
     }
   }
+}
+
+/**
+ * Set the default mirador_language_support value for existing installs.
+ */
+function islandora_mirador_post_update_set_language_support_value() {
+  \Drupal::configFactory()->getEditable('islandora_mirador.settings')
+    ->set('mirador_language_support', FALSE)
+    ->save();
 }

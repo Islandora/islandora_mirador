@@ -61,6 +61,13 @@ class MiradorConfigForm extends ConfigFormBase {
       ],
     ];
 
+    $form['mirador_library_fieldset']['mirador_language_support'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable multi-language interface'),
+      '#description' => $this->t('Use the Drupal interface language for the Mirador viewer (if supported).'),
+      '#default_value' => $config->get('mirador_language_support'),
+    ];
+
     $plugins = [];
     foreach ($this->miradorPluginManager->getDefinitions() as $plugin_key => $plugin_definition) {
       $plugins[$plugin_key] = $plugin_definition['label'];
@@ -174,11 +181,13 @@ class MiradorConfigForm extends ConfigFormBase {
     $config->set('mirador_enabled_plugins', $form_state->getValue('mirador_enabled_plugins'));
     $config->set('iiif_manifest_url', $form_state->getValue('iiif_manifest_url'));
     $config->set('mirador_library_minified', $form_state->getValue('mirador_library_minified'));
+    $config->set('mirador_language_support', $form_state->getValue('mirador_language_support'));
     $config->set('mirador_selected_theme', $form_state->getValue('mirador_selected_theme'));
     $config->set('mirador_theme_light_primary', $form_state->getValue('mirador_theme_light_primary'));
     $config->set('mirador_theme_light_secondary', $form_state->getValue('mirador_theme_light_secondary'));
     $config->set('mirador_theme_dark_primary', $form_state->getValue('mirador_theme_dark_primary'));
     $config->set('mirador_theme_dark_secondary', $form_state->getValue('mirador_theme_dark_secondary'));
+
     $config->save();
     parent::submitForm($form, $form_state);
   }
