@@ -92,33 +92,39 @@ class MiradorConfigForm extends ConfigFormBase {
       '#options' => [
         'light' => $this->t('Light'),
         'dark' => $this->t('Dark'),
+        'system' => $this->t("Use OS setting (follows the browser's light/dark preference)"),
       ],
       '#default_value' => $config->get('mirador_selected_theme'),
     ];
-    $form['mirador_theme_fieldset']['mirador_theme_light'] = [
+    $form['mirador_theme_fieldset']['mirador_theme_advanced'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Advanced theming'),
+      '#open' => FALSE,
+    ];
+    $form['mirador_theme_fieldset']['mirador_theme_advanced']['mirador_theme_light'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Light theme colors'),
     ];
-    $form['mirador_theme_fieldset']['mirador_theme_light']['mirador_theme_light_primary'] = [
+    $form['mirador_theme_fieldset']['mirador_theme_advanced']['mirador_theme_light']['mirador_theme_light_primary'] = [
       '#type' => 'color',
       '#title' => $this->t('Primary color'),
       '#default_value' => $config->get('mirador_theme_light_primary'),
     ];
-    $form['mirador_theme_fieldset']['mirador_theme_light']['mirador_theme_light_secondary'] = [
+    $form['mirador_theme_fieldset']['mirador_theme_advanced']['mirador_theme_light']['mirador_theme_light_secondary'] = [
       '#type' => 'color',
       '#title' => $this->t('Secondary color'),
       '#default_value' => $config->get('mirador_theme_light_secondary'),
     ];
-    $form['mirador_theme_fieldset']['mirador_theme_dark'] = [
+    $form['mirador_theme_fieldset']['mirador_theme_advanced']['mirador_theme_dark'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Dark theme colors'),
     ];
-    $form['mirador_theme_fieldset']['mirador_theme_dark']['mirador_theme_dark_primary'] = [
+    $form['mirador_theme_fieldset']['mirador_theme_advanced']['mirador_theme_dark']['mirador_theme_dark_primary'] = [
       '#type' => 'color',
       '#title' => $this->t('Primary color'),
       '#default_value' => $config->get('mirador_theme_dark_primary'),
     ];
-    $form['mirador_theme_fieldset']['mirador_theme_dark']['mirador_theme_dark_secondary'] = [
+    $form['mirador_theme_fieldset']['mirador_theme_advanced']['mirador_theme_dark']['mirador_theme_dark_secondary'] = [
       '#type' => 'color',
       '#title' => $this->t('Secondary color'),
       '#default_value' => $config->get('mirador_theme_dark_secondary'),
@@ -154,8 +160,8 @@ class MiradorConfigForm extends ConfigFormBase {
     parent::validateForm($form, $form_state);
 
     $theme = $form_state->getValue('mirador_selected_theme');
-    if (!in_array($theme, ['light', 'dark'], TRUE)) {
-      $form_state->setErrorByName('mirador_selected_theme', $this->t('Theme must be either "light" or "dark".'));
+    if (!in_array($theme, ['light', 'dark', 'system'], TRUE)) {
+      $form_state->setErrorByName('mirador_selected_theme', $this->t('Theme must be "light", "dark", or "system".'));
     }
 
     $color_fields = [

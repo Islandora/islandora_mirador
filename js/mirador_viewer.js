@@ -16,11 +16,16 @@
             Drupal.IslandoraMirador.instances = Drupal.IslandoraMirador.instances || {}
             Object.entries(settings.mirador.viewers).forEach(entry => {
               const [base, values] = entry;
-              once('mirador-viewer', base, context).forEach(() =>
+              once('mirador-viewer', base, context).forEach(() => {
+                // Resolve 'system' theme to the OS preference at render time.
+                const resolvedValues = Object.assign({}, values);
+                if (resolvedValues.selectedTheme === 'system') {
+                    resolvedValues.selectedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
                 // save the mirador instance so other modules can interact
                 // with the store/actions at e.g. Drupal.IslandoraMirador.instances["#mirador-xyz"].store
-                Drupal.IslandoraMirador.instances[base] = Mirador.viewer(values, window.miradorPlugins || {})
-              );
+                Drupal.IslandoraMirador.instances[base] = Mirador.viewer(resolvedValues, window.miradorPlugins || {});
+              });
             });
         },
         detach: function (context, settings) {
