@@ -20,3 +20,18 @@ islandora_mirador.settings:
     mirador_language_support:
       type: boolean
       label: 'Enable language support'
+    mirador_selected_theme:
+      type: string
+      label: 'Selected Mirador theme'
+    mirador_theme_light_primary:
+      type: color_hex
+      label: 'Light theme primary color'
+    mirador_theme_light_secondary:
+      type: color_hex
+      label: 'Light theme secondary color'
+    mirador_theme_dark_primary:
+      type: color_hex
+      label: 'Dark theme primary color'
+    mirador_theme_dark_secondary:
+      type: color_hex
+      label: 'Dark theme secondary color'

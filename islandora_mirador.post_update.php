@@ -34,3 +34,30 @@ function islandora_mirador_post_update_enable_plugins() {
     $config->save(TRUE);
   }
 }
+
+/**
+ * Set default theme settings for existing sites.
+ */
+function islandora_mirador_post_update_theme_defaults() {
+  $config = \Drupal::configFactory()->getEditable('islandora_mirador.settings');
+
+  $defaults = [
+    'mirador_selected_theme' => 'light',
+    'mirador_theme_light_primary' => '#1967d2',
+    'mirador_theme_light_secondary' => '#1967d2',
+    'mirador_theme_dark_primary' => '#4db6ac',
+    'mirador_theme_dark_secondary' => '#4db6ac',
+  ];
+
+  $changed = FALSE;
+  foreach ($defaults as $key => $value) {
+    if ($config->get($key) === NULL) {
+      $config->set($key, $value);
+      $changed = TRUE;
+    }
+  }
+
+  if ($changed) {
+    $config->save(TRUE);
+  }
+}
