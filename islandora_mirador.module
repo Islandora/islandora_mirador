@@ -118,6 +118,9 @@ function template_preprocess_mirador(&$variables) {
     $viewer_config['themes'] = $theme_config;
   }
   $variables['#attached']['drupalSettings']['mirador']['viewers']["#{$variables['mirador_view_id']}"] = $viewer_config;
+ 
+  // Attach the viewer libraries.
+  $variables['#attached']['library'][] = 'islandora_mirador/viewer';
 }
 
 /**
