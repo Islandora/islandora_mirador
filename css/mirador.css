@@ -2,3 +2,12 @@
   height: 1200px;
   position: relative;
 }
+/* Fixes for Tooltips is underneath parent frame */
+.mirador1 .MuiTooltip-popper {
+    z-index: 9999 !important;
+    left: 20px !important;
+}
+.mirador1 {
+    overflow: visible !important;
+}
+
