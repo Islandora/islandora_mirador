@@ -10,4 +10,29 @@
 .mirador1 {
     overflow: visible !important;
 }
-
+@media screen and (max-width: 768px) {
+  .block-mirador {
+    height: 100vh;
+    min-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Improve touch target sizes for mobile */
+  .mirador-container * {
+    touch-action: manipulation;
+  }
+  #mirador {
+    height: 100% !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+  /* Ensure navigation and controls are accessible on touch devices */
+  .mirador-osd, .mirador-canvas {
+    min-height: 200px;
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+  /* Fix for mobile browsers that may zoom in too much */
+  #mirador, #mirador * {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }  
+}
