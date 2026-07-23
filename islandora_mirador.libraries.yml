@@ -1,17 +1,17 @@
 mirador:
-  version: 3.3.0
+  version: 4.1.0
   remote: https://projectmirador.org
   license:
     name: Apache license
     url: https://github.com/ProjectMirador/mirador/blob/master/LICENSE
     gpl-compatible: true
   js:
-    https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@gh-pages/islandora-mirador-0.1.1.js:
+    https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@0.2.3/main.js:
       type: external
       minified: true
       attributes:
         # Calculated with/adapted from https://www.srihash.org/
-        integrity: sha384-H5YQxUhUbKfpBiKCSX4CVhogXKAWLM31Wj3STZe4TIhc4F1DzfOpGJUo8Qav7eoa
+        integrity: sha384-luAPelYuxpt8MM50tS+9nbdGPl+uweufM2PXCRx3fx0omtHZg1ZmL+x1atQbEHwM
         crossorigin: anonymous
 viewer:
   version: 1.x
