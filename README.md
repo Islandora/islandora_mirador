@@ -42,7 +42,7 @@ a Plugin Not Found error.
 The module can use either an instance of Mirador Integration hosted
 on the web, or deployed locally.
 
-Islandora maintains a version of the Mirador library that includes image manipulation and text overlay plugins. This compiled library is available on the web at https://islandora.github.io/mirador-integration-islandora/islandora-mirador-0.1.0.js, and the github project is at https://github.com/islandora/mirador-integration-islandora.
+Islandora maintains a version of the Mirador library that includes image manipulation and text overlay plugins. This compiled library is available on the web at https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@0.2.3/main.js, and the github project is at https://github.com/islandora/mirador-integration-islandora.
 
 If you have a local build, put it in
 your webroot at libraries/mirador/dist/main.js.
@@ -74,7 +74,7 @@ Replace `%node` with `[node:nid]`, and prepend with the domain of your installat
 
 ### Default Plugins
 
-As of version >= 2.3 the default Islandora Mirador configuration utilizes UPEI's version of the Mirador library, which is compiled with these Mirador 3 plugins:
+As of version >= 3.0 the default Islandora Mirador configuration utilizes Islandora's version of the Mirador library, which is compiled with these Mirador 4 plugins:
 
 - [Image Tools](https://github.com/ProjectMirador/mirador-image-tools)
 
@@ -84,9 +84,13 @@ As of version >= 2.3 the default Islandora Mirador configuration utilizes UPEI's
 
     Overlays embedded text such as hOCR on to the UI for text selection and screen reader support.
 
+- [Download Plugin](https://github.com/ProjectMirador/mirador-dl-plugin)
+
+    Provides download links in the options menu.
+
 ### Developing Custom Plugins
 
-In Mirador 3 plugins must be built in to the application. See the documentation page [Creating Mirador 3 Plugins](https://github.com/ProjectMirador/mirador/wiki/M3---Creating-a-Mirador-plugin) for more information.
+In Mirador 4 plugins must be built in to the application. See the documentation page [Using Mirador with a plugin](https://github.com/ProjectMirador/mirador/wiki/Embedding-in-Another-Environment#using-mirador-with-a-plugin-mirador-4) for more information.
 
 Follow the [Mirador library](#mirador-library) instructions above for deploying your custom-built Mirador app above to make it available to your Islandora site.
 
