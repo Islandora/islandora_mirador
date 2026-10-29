@@ -44,7 +44,7 @@ on the web, or deployed locally.
 
 Islandora maintains a version of the Mirador library that includes image
 manipulation and text overlay plugins. This compiled library is available on
-the web at https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@0.2.6/main.js,
+the web at https://cdn.jsdelivr.net/gh/islandora/mirador-integration-islandora@0.2.7/main.js,
 and the github project is at https://github.com/islandora/mirador-integration-islandora.
 
 If you have a local build, put it in
